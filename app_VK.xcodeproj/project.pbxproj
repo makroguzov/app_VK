@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -106,13 +106,8 @@
 		71607EAA253186AD00017010 /* app_VK */ = {
 			isa = PBXGroup;
 			children = (
-				71607EAB253186AD00017010 /* AppDelegate.swift */,
-				71607EAD253186AD00017010 /* SceneDelegate.swift */,
-				71607EAF253186AD00017010 /* ViewController.swift */,
-				71607EB1253186AD00017010 /* Main.storyboard */,
-				71607EB4253186AD00017010 /* Assets.xcassets */,
-				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
-				71607EB9253186AD00017010 /* Info.plist */,
+				71607EFC2531917F00017010 /* Screens */,
+				71607EFB2531916300017010 /* Support Files */,
 			);
 			path = app_VK;
 			sourceTree = "<group>";
@@ -135,13 +130,33 @@
 			path = app_VKUITests;
 			sourceTree = "<group>";
 		};
+		71607EFB2531916300017010 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				71607EAB253186AD00017010 /* AppDelegate.swift */,
+				71607EAD253186AD00017010 /* SceneDelegate.swift */,
+				71607EB4253186AD00017010 /* Assets.xcassets */,
+				71607EB9253186AD00017010 /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		71607EFC2531917F00017010 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				71607EAF253186AD00017010 /* ViewController.swift */,
+				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
+				71607EB1253186AD00017010 /* Main.storyboard */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		8DB7A192565F90C282F42584 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				E5E22113557A8DC22F637106 /* Pods-app_VK.debug.xcconfig */,
 				FF60FCC467720103FE1960AC /* Pods-app_VK.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -508,7 +523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QU9ZBG8S59;
-				INFOPLIST_FILE = app_VK/Info.plist;
+				INFOPLIST_FILE = "app_VK/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -528,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QU9ZBG8S59;
-				INFOPLIST_FILE = app_VK/Info.plist;
+				INFOPLIST_FILE = "app_VK/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
