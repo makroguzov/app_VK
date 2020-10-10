@@ -19,6 +19,16 @@
 		71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F192531960100017010 /* VKRequestParametrs.swift */; };
 		71607F222531961C00017010 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F212531961C00017010 /* Session.swift */; };
 		71607F30253196D900017010 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F2F253196D900017010 /* RealmService.swift */; };
+		71607F3C253198AC00017010 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F3B253198AC00017010 /* TableViewModel.swift */; };
+		71607F41253198E400017010 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F40253198E400017010 /* TableSection.swift */; };
+		71607F472531D2D700017010 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F462531D2D700017010 /* AsyncOperation.swift */; };
+		71607F4C2531D4D800017010 /* GetDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F4B2531D4D800017010 /* GetDataOperation.swift */; };
+		71607F522531D94400017010 /* ParseTableDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F512531D94400017010 /* ParseTableDataOperation.swift */; };
+		71607F5A2531DA2100017010 /* ReloadDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F592531DA2100017010 /* ReloadDataOperation.swift */; };
+		71607F5F2531DA8900017010 /* DataReloadedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F5E2531DA8900017010 /* DataReloadedController.swift */; };
+		71607F682531DDAC00017010 /* MVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F672531DDAC00017010 /* MVCTableViewController.swift */; };
+		71607F702531E11000017010 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F6F2531E11000017010 /* DataLoader.swift */; };
+		71607F752531E55600017010 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F742531E55600017010 /* Parser.swift */; };
 		8F2C732CDA2B217EEDA0881A /* Pods_app_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFE7EAA543A9D6C73F82757 /* Pods_app_VK.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +69,16 @@
 		71607F192531960100017010 /* VKRequestParametrs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKRequestParametrs.swift; sourceTree = "<group>"; };
 		71607F212531961C00017010 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		71607F2F253196D900017010 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		71607F3B253198AC00017010 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		71607F40253198E400017010 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
+		71607F462531D2D700017010 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		71607F4B2531D4D800017010 /* GetDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataOperation.swift; sourceTree = "<group>"; };
+		71607F512531D94400017010 /* ParseTableDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseTableDataOperation.swift; sourceTree = "<group>"; };
+		71607F592531DA2100017010 /* ReloadDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDataOperation.swift; sourceTree = "<group>"; };
+		71607F5E2531DA8900017010 /* DataReloadedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReloadedController.swift; sourceTree = "<group>"; };
+		71607F672531DDAC00017010 /* MVCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCTableViewController.swift; sourceTree = "<group>"; };
+		71607F6F2531E11000017010 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		71607F742531E55600017010 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		E5E22113557A8DC22F637106 /* Pods-app_VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.debug.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.debug.xcconfig"; sourceTree = "<group>"; };
 		FF60FCC467720103FE1960AC /* Pods-app_VK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.release.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +173,7 @@
 		71607EFC2531917F00017010 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				71607F3A2531988600017010 /* View Model */,
 				71607EAF253186AD00017010 /* ViewController.swift */,
 				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
 				71607EB1253186AD00017010 /* Main.storyboard */,
@@ -165,8 +186,8 @@
 			children = (
 				71607F212531961C00017010 /* Session.swift */,
 				71607F112531950000017010 /* VKDataLoader.swift */,
-				71607F192531960100017010 /* VKRequestParametrs.swift */,
-				71607F2F253196D900017010 /* RealmService.swift */,
+				71607F502531D8B200017010 /* Database */,
+				71607F452531D2BF00017010 /* Network */,
 				71607F102531943400017010 /* Models */,
 			);
 			path = "Network + Database";
@@ -177,6 +198,47 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		71607F3A2531988600017010 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				71607F672531DDAC00017010 /* MVCTableViewController.swift */,
+				71607F3B253198AC00017010 /* TableViewModel.swift */,
+				71607F40253198E400017010 /* TableSection.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		71607F452531D2BF00017010 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				71607F5E2531DA8900017010 /* DataReloadedController.swift */,
+				71607F192531960100017010 /* VKRequestParametrs.swift */,
+				71607F6F2531E11000017010 /* DataLoader.swift */,
+				71607F742531E55600017010 /* Parser.swift */,
+				71607F632531DAD200017010 /* Network Operations */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		71607F502531D8B200017010 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				71607F2F253196D900017010 /* RealmService.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		71607F632531DAD200017010 /* Network Operations */ = {
+			isa = PBXGroup;
+			children = (
+				71607F462531D2D700017010 /* AsyncOperation.swift */,
+				71607F4B2531D4D800017010 /* GetDataOperation.swift */,
+				71607F512531D94400017010 /* ParseTableDataOperation.swift */,
+				71607F592531DA2100017010 /* ReloadDataOperation.swift */,
+			);
+			path = "Network Operations";
 			sourceTree = "<group>";
 		};
 		8DB7A192565F90C282F42584 /* Pods */ = {
@@ -370,12 +432,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71607F41253198E400017010 /* TableSection.swift in Sources */,
+				71607F682531DDAC00017010 /* MVCTableViewController.swift in Sources */,
 				71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */,
 				71607F30253196D900017010 /* RealmService.swift in Sources */,
 				71607F122531950000017010 /* VKDataLoader.swift in Sources */,
 				71607F222531961C00017010 /* Session.swift in Sources */,
 				71607EB0253186AD00017010 /* ViewController.swift in Sources */,
 				71607EAC253186AD00017010 /* AppDelegate.swift in Sources */,
+				71607F5A2531DA2100017010 /* ReloadDataOperation.swift in Sources */,
+				71607F3C253198AC00017010 /* TableViewModel.swift in Sources */,
+				71607F5F2531DA8900017010 /* DataReloadedController.swift in Sources */,
+				71607F4C2531D4D800017010 /* GetDataOperation.swift in Sources */,
+				71607F702531E11000017010 /* DataLoader.swift in Sources */,
+				71607F522531D94400017010 /* ParseTableDataOperation.swift in Sources */,
+				71607F472531D2D700017010 /* AsyncOperation.swift in Sources */,
+				71607F752531E55600017010 /* Parser.swift in Sources */,
 				71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
