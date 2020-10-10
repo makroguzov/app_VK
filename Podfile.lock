@@ -1,3 +1,36 @@
-PODFILE CHECKSUM: 8e4c8a75d9ac7aed4d93dfd168d6e0311028565e
+PODS:
+  - Alamofire (5.2.2)
+  - JGProgressHUD (2.1)
+  - Realm (5.3.6):
+    - Realm/Headers (= 5.3.6)
+  - Realm/Headers (5.3.6)
+  - RealmSwift (5.3.6):
+    - Realm (= 5.3.6)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - JGProgressHUD (~> 2.1)
+  - RealmSwift (~> 5.3.5)
+  - SDWebImage (~> 5.8.4)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - JGProgressHUD
+    - Realm
+    - RealmSwift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
+  Realm: cd400dd7e5b5bb5c8ae9842eecd73792369e6ec0
+  RealmSwift: 99a16dbdee5d6dfb3d91d56088a9f8c15c0871d1
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+
+PODFILE CHECKSUM: 363c21bbc0454195f69aed5b9a3145355b9f9bb5
 
 COCOAPODS: 1.9.3
