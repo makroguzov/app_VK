@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		71607EAC253186AD00017010 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EAB253186AD00017010 /* AppDelegate.swift */; };
 		71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EAD253186AD00017010 /* SceneDelegate.swift */; };
-		71607EB0253186AD00017010 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EAF253186AD00017010 /* ViewController.swift */; };
 		71607EB3253186AD00017010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71607EB1253186AD00017010 /* Main.storyboard */; };
 		71607EB5253186AD00017010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71607EB4253186AD00017010 /* Assets.xcassets */; };
 		71607EB8253186AD00017010 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71607EB6253186AD00017010 /* LaunchScreen.storyboard */; };
@@ -54,7 +53,6 @@
 		71607EA8253186AD00017010 /* app_VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_VK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71607EAB253186AD00017010 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71607EAD253186AD00017010 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		71607EAF253186AD00017010 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		71607EB2253186AD00017010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71607EB4253186AD00017010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71607EB7253186AD00017010 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				71607F3A2531988600017010 /* View Model */,
-				71607EAF253186AD00017010 /* ViewController.swift */,
 				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
 				71607EB1253186AD00017010 /* Main.storyboard */,
 			);
@@ -438,7 +435,6 @@
 				71607F30253196D900017010 /* RealmService.swift in Sources */,
 				71607F122531950000017010 /* VKDataLoader.swift in Sources */,
 				71607F222531961C00017010 /* Session.swift in Sources */,
-				71607EB0253186AD00017010 /* ViewController.swift in Sources */,
 				71607EAC253186AD00017010 /* AppDelegate.swift in Sources */,
 				71607F5A2531DA2100017010 /* ReloadDataOperation.swift in Sources */,
 				71607F3C253198AC00017010 /* TableViewModel.swift in Sources */,
