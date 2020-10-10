@@ -15,6 +15,10 @@
 		71607EB8253186AD00017010 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71607EB6253186AD00017010 /* LaunchScreen.storyboard */; };
 		71607EC3253186AE00017010 /* app_VKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EC2253186AE00017010 /* app_VKTests.swift */; };
 		71607ECE253186AE00017010 /* app_VKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607ECD253186AE00017010 /* app_VKUITests.swift */; };
+		71607F122531950000017010 /* VKDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F112531950000017010 /* VKDataLoader.swift */; };
+		71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F192531960100017010 /* VKRequestParametrs.swift */; };
+		71607F222531961C00017010 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F212531961C00017010 /* Session.swift */; };
+		71607F30253196D900017010 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F2F253196D900017010 /* RealmService.swift */; };
 		8F2C732CDA2B217EEDA0881A /* Pods_app_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFE7EAA543A9D6C73F82757 /* Pods_app_VK.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +55,10 @@
 		71607EC9253186AE00017010 /* app_VKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = app_VKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71607ECD253186AE00017010 /* app_VKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_VKUITests.swift; sourceTree = "<group>"; };
 		71607ECF253186AE00017010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71607F112531950000017010 /* VKDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKDataLoader.swift; sourceTree = "<group>"; };
+		71607F192531960100017010 /* VKRequestParametrs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKRequestParametrs.swift; sourceTree = "<group>"; };
+		71607F212531961C00017010 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		71607F2F253196D900017010 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		E5E22113557A8DC22F637106 /* Pods-app_VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.debug.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.debug.xcconfig"; sourceTree = "<group>"; };
 		FF60FCC467720103FE1960AC /* Pods-app_VK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.release.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +114,7 @@
 		71607EAA253186AD00017010 /* app_VK */ = {
 			isa = PBXGroup;
 			children = (
+				71607F0F2531942000017010 /* Network + Database */,
 				71607EFC2531917F00017010 /* Screens */,
 				71607EFB2531916300017010 /* Support Files */,
 			);
@@ -149,6 +158,25 @@
 				71607EB1253186AD00017010 /* Main.storyboard */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		71607F0F2531942000017010 /* Network + Database */ = {
+			isa = PBXGroup;
+			children = (
+				71607F212531961C00017010 /* Session.swift */,
+				71607F112531950000017010 /* VKDataLoader.swift */,
+				71607F192531960100017010 /* VKRequestParametrs.swift */,
+				71607F2F253196D900017010 /* RealmService.swift */,
+				71607F102531943400017010 /* Models */,
+			);
+			path = "Network + Database";
+			sourceTree = "<group>";
+		};
+		71607F102531943400017010 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8DB7A192565F90C282F42584 /* Pods */ = {
@@ -342,6 +370,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */,
+				71607F30253196D900017010 /* RealmService.swift in Sources */,
+				71607F122531950000017010 /* VKDataLoader.swift in Sources */,
+				71607F222531961C00017010 /* Session.swift in Sources */,
 				71607EB0253186AD00017010 /* ViewController.swift in Sources */,
 				71607EAC253186AD00017010 /* AppDelegate.swift in Sources */,
 				71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */,
