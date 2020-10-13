@@ -5,8 +5,8 @@
 //  Created by Валерий Макрогузов on 10.10.2020.
 //
 
-import Foundation
+import UIKit
 
-protocol DataReloadedController {
-    func reloadData(with newData: [TableSection])
+protocol DataReloadedController: UIViewController {
+    func reloadData(with newData: [Int: TableSection])
 }

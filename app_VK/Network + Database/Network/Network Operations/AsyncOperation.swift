@@ -41,16 +41,16 @@ class AsyncOperation: Operation {
         state == .executing
     }
     
-    override var isCancelled: Bool {
+    override var isFinished: Bool {
         state == .finished
     }
-    
+    	
     override func start() {
         if isCancelled {
             state = .finished
         } else {
-            state = .executing
             main()
+            state = .executing
         }
     }
     

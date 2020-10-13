@@ -7,15 +7,8 @@
 
 import UIKit
 
-protocol MVCTableViewController: UIViewController, DataReloadedController {
+protocol MVCTableViewController: DataReloadedController {
     
-    var viewModel: TableViewModel { get }
+    var viewModel: TableViewModel! { get }
 
 }
-
-extension MVCTableViewController {
-    func reloadData(with newData: [TableSection]) {
-        return
-    }
-}
-

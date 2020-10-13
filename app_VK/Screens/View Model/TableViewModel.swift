@@ -7,23 +7,37 @@
 
 import UIKit
 
-protocol TableViewModel: UITableViewDelegate, UITableViewDataSource {
+protocol TableViewModel {
 
     var sections: [TableSection] { get set }
-    var dataLoader: DataLoader { get set }
+    var dataLoader: DataLaoder { get set }
     
+    init(_ controler: MVCTableViewController, with tableView: UITableView)
+    
+    func setUp(with newData: [Int: TableSection])
+    
+    func getSection(for section: Int) -> TableSection
+    
+    func numberOfSections() -> Int
+    func numberOfRowsInSection(section: Int) -> Int
+    func cellForRowAt(indexPath: IndexPath) -> UITableViewCell
 }
 
 extension TableViewModel {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    
+    func getSection(for section: Int) -> TableSection {
+        return sections[section]
+    }
+    
+    func numberOfSections() -> Int {
         return sections.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfRowsInSection(section: Int) -> Int {
         return sections[section].rows.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func cellForRowAt(indexPath: IndexPath) -> UITableViewCell {
         return sections[indexPath.section].rows[indexPath.row]
     }
 }

@@ -17,17 +17,36 @@ class GetDataOperation: AsyncOperation {
         return session
     }()
     
-    private var request: DataRequest
-    var json: [String: Any]?
+    private var group = DispatchGroup()
     
-    init(params: VKRequestParametrs) {
-        request = session.request(params.getBaseUrl() + params.getPath(),
-                                  method: .get,
-                                  parameters: params.getParams())
+    private var requests: [DataRequest] = []
+    var jsons = [Int: [String: Any]]()
+    
+    init(params: [VKRequestParametrs]) {
+        for param in params {
+            requests.append(session.request(param.getBaseUrl() + param.getPath(),
+                                      method: .get,
+                                      parameters: param.getParams())
+            )
+        }
     }
     
     override func main() {
-        request.responseJSON { [weak self] response in
+        for section in 0..<requests.count {
+            group.enter()
+            
+            let request = requests[section]
+            getJSON(for: section, request)
+        }
+        
+        group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
+            self?.state = .finished
+        }
+    }
+    
+    private func getJSON(for section: Int, _ request: DataRequest) {
+        request.responseJSON(queue: .global(qos: .userInitiated)) { [weak self] response in
+            self?.group.leave()
             
             switch response.result {
             case let .success(json):
@@ -35,8 +54,8 @@ class GetDataOperation: AsyncOperation {
                     print("Problems with losding data in class: GetDataOperation, at function: \(#function). Response is not exist.")
                     return
                 }
-                self?.json = response
-            
+                
+                self?.jsons[section] = response
             case let .failure(error):
                 print("Problems with losding data in class: GetDataOperation, at function: \(#function). Error: \(error.localizedDescription)")
             }
@@ -44,7 +63,9 @@ class GetDataOperation: AsyncOperation {
     }
     
     override func cancel() {
-        request.cancel()
-        super.cancel()
+        for request in requests {
+            request.cancel()
+            super.cancel()
+        }
     }
 }
