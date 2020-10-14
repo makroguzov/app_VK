@@ -11,6 +11,7 @@ class GroupsInvitationCell: UITableViewCell {
 
     static let identifier = "GroupsInvitationCell"
     static let nibName = "GroupsInvitationCell"
+    static let height: CGFloat = 100
     
     @IBOutlet weak var eventImageView: UIImageView! {
         didSet {

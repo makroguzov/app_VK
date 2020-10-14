@@ -10,7 +10,7 @@ import Foundation
 class ParseTableDataOperation: Operation {
     
     private var parser: Parser
-    var sections = [Int: TableSection]()
+    var sections = [Int: TableSectionModel]()
  
     init(parser: Parser) {
         self.parser = parser

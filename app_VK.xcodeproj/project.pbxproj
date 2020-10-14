@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		714E1E072534CC9400D605EF /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E1E062534CC9400D605EF /* DataLoader.swift */; };
 		714E1E122534D6F400D605EF /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E1E112534D6F400D605EF /* VKLoginViewController.swift */; };
+		715411DA253736D000DA1853 /* TableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411D9253736D000DA1853 /* TableCellModel.swift */; };
+		715411E32537420B00DA1853 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411E22537420B00DA1853 /* UserFriendsViewController.swift */; };
+		715411EE253742B900DA1853 /* RequestForFiendsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411ED253742B900DA1853 /* RequestForFiendsSection.swift */; };
+		715411F625374F0700DA1853 /* GroupInvitationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411F525374F0700DA1853 /* GroupInvitationCellModel.swift */; };
+		715411FB25374F4600DA1853 /* UserGroupsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411FA25374F4600DA1853 /* UserGroupsCellModel.swift */; };
 		71607EAC253186AD00017010 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EAB253186AD00017010 /* AppDelegate.swift */; };
 		71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607EAD253186AD00017010 /* SceneDelegate.swift */; };
 		71607EB3253186AD00017010 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71607EB1253186AD00017010 /* Main.storyboard */; };
@@ -21,7 +26,7 @@
 		71607F222531961C00017010 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F212531961C00017010 /* Session.swift */; };
 		71607F30253196D900017010 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F2F253196D900017010 /* RealmService.swift */; };
 		71607F3C253198AC00017010 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F3B253198AC00017010 /* TableViewModel.swift */; };
-		71607F41253198E400017010 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F40253198E400017010 /* TableSection.swift */; };
+		71607F41253198E400017010 /* TableSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F40253198E400017010 /* TableSectionModel.swift */; };
 		71607F472531D2D700017010 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F462531D2D700017010 /* AsyncOperation.swift */; };
 		71607F4C2531D4D800017010 /* GetDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F4B2531D4D800017010 /* GetDataOperation.swift */; };
 		71607F522531D94400017010 /* ParseTableDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F512531D94400017010 /* ParseTableDataOperation.swift */; };
@@ -67,6 +72,11 @@
 		0AFE7EAA543A9D6C73F82757 /* Pods_app_VK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_VK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E1E062534CC9400D605EF /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		714E1E112534D6F400D605EF /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		715411D9253736D000DA1853 /* TableCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellModel.swift; sourceTree = "<group>"; };
+		715411E22537420B00DA1853 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
+		715411ED253742B900DA1853 /* RequestForFiendsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestForFiendsSection.swift; sourceTree = "<group>"; };
+		715411F525374F0700DA1853 /* GroupInvitationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInvitationCellModel.swift; sourceTree = "<group>"; };
+		715411FA25374F4600DA1853 /* UserGroupsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsCellModel.swift; sourceTree = "<group>"; };
 		71607EA8253186AD00017010 /* app_VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_VK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71607EAB253186AD00017010 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71607EAD253186AD00017010 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +95,7 @@
 		71607F212531961C00017010 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		71607F2F253196D900017010 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		71607F3B253198AC00017010 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
-		71607F40253198E400017010 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
+		71607F40253198E400017010 /* TableSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionModel.swift; sourceTree = "<group>"; };
 		71607F462531D2D700017010 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		71607F4B2531D4D800017010 /* GetDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataOperation.swift; sourceTree = "<group>"; };
 		71607F512531D94400017010 /* ParseTableDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseTableDataOperation.swift; sourceTree = "<group>"; };
@@ -137,6 +147,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		715411E1253741D300DA1853 /* User Friends */ = {
+			isa = PBXGroup;
+			children = (
+				715411EB2537426D00DA1853 /* Sections */,
+				715411EA2537426B00DA1853 /* Servises */,
+				715411E22537420B00DA1853 /* UserFriendsViewController.swift */,
+			);
+			path = "User Friends";
+			sourceTree = "<group>";
+		};
+		715411EA2537426B00DA1853 /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Servises;
+			sourceTree = "<group>";
+		};
+		715411EB2537426D00DA1853 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				715411EC2537428F00DA1853 /* Cells */,
+				715411ED253742B900DA1853 /* RequestForFiendsSection.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		715411EC2537428F00DA1853 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		71607E9F253186AD00017010 = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +235,7 @@
 			children = (
 				71607EAB253186AD00017010 /* AppDelegate.swift */,
 				71607EAD253186AD00017010 /* SceneDelegate.swift */,
+				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
 				71607EB4253186AD00017010 /* Assets.xcassets */,
 				71607EB9253186AD00017010 /* Info.plist */,
 			);
@@ -201,10 +245,10 @@
 		71607EFC2531917F00017010 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				71607F3A2531988600017010 /* View Model */,
+				71607F3A2531988600017010 /* View Models */,
+				715411E1253741D300DA1853 /* User Friends */,
 				71607F892531EDB100017010 /* User Groups */,
 				714E1E112534D6F400D605EF /* VKLoginViewController.swift */,
-				71607EB6253186AD00017010 /* LaunchScreen.storyboard */,
 				71607EB1253186AD00017010 /* Main.storyboard */,
 			);
 			path = Screens;
@@ -232,14 +276,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		71607F3A2531988600017010 /* View Model */ = {
+		71607F3A2531988600017010 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
 				71607F672531DDAC00017010 /* MVCTableViewController.swift */,
 				71607F3B253198AC00017010 /* TableViewModel.swift */,
-				71607F40253198E400017010 /* TableSection.swift */,
+				71607F40253198E400017010 /* TableSectionModel.swift */,
+				715411D9253736D000DA1853 /* TableCellModel.swift */,
 			);
-			path = "View Model";
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		71607F452531D2BF00017010 /* Network */ = {
@@ -308,8 +353,10 @@
 			isa = PBXGroup;
 			children = (
 				71607FD12533707200017010 /* GroupsInvitationCell.swift */,
+				715411F525374F0700DA1853 /* GroupInvitationCellModel.swift */,
 				71607FD22533707200017010 /* GroupsInvitationCell.xib */,
 				71607FE32533745200017010 /* UserGroupCell.swift */,
+				715411FA25374F4600DA1853 /* UserGroupsCellModel.swift */,
 				71607FE42533745200017010 /* UserGroupCell.xib */,
 			);
 			path = Cells;
@@ -508,15 +555,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71607F41253198E400017010 /* TableSection.swift in Sources */,
+				715411F625374F0700DA1853 /* GroupInvitationCellModel.swift in Sources */,
+				71607F41253198E400017010 /* TableSectionModel.swift in Sources */,
 				71607F682531DDAC00017010 /* MVCTableViewController.swift in Sources */,
 				71607FB42533330000017010 /* UserGroupsSection.swift in Sources */,
 				71607F992531F03400017010 /* UserGroupsViewModel.swift in Sources */,
 				71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */,
 				71607FD32533707200017010 /* GroupsInvitationCell.swift in Sources */,
+				715411DA253736D000DA1853 /* TableCellModel.swift in Sources */,
 				71607F9E2531F26B00017010 /* UserGroupsParser.swift in Sources */,
 				71607FC725334CEE00017010 /* City.swift in Sources */,
+				715411E32537420B00DA1853 /* UserFriendsViewController.swift in Sources */,
 				71607F30253196D900017010 /* RealmService.swift in Sources */,
+				715411FB25374F4600DA1853 /* UserGroupsCellModel.swift in Sources */,
 				71607F122531950000017010 /* VKDataLoader.swift in Sources */,
 				71607FE52533745200017010 /* UserGroupCell.swift in Sources */,
 				71607F8E2531EE1B00017010 /* UserGrouposViewControler.swift in Sources */,
@@ -528,6 +579,7 @@
 				71607F3C253198AC00017010 /* TableViewModel.swift in Sources */,
 				714E1E122534D6F400D605EF /* VKLoginViewController.swift in Sources */,
 				71607F5F2531DA8900017010 /* DataReloadedController.swift in Sources */,
+				715411EE253742B900DA1853 /* RequestForFiendsSection.swift in Sources */,
 				71607F4C2531D4D800017010 /* GetDataOperation.swift in Sources */,
 				71607F702531E11000017010 /* NetworkManager.swift in Sources */,
 				71607F522531D94400017010 /* ParseTableDataOperation.swift in Sources */,

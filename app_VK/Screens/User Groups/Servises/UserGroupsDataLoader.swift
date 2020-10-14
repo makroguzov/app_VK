@@ -14,18 +14,18 @@ class UserGroupsDataLoader: DataLaoder {
     }
         
     func load(dataFor sections: [Section]) {
-        var params = [VKRequestParametrs]()
+        var params = [Int: VKRequestParametrs]()
         
         for section in sections {
             switch section {
             case .friend:
-                params.append(self.getGroupsParametrs())
+                params[1] = getGroupsParametrs()
             case .invitations:
-                params.append(self.getInvitationsParametrs())
+                params[0] = getInvitationsParametrs()
             }
-            
-            networkManager.loadData(with: params)
         }
+
+        networkManager.loadData(with: params)
     }
     
     private func getGroupsParametrs() -> VKRequestParametrs  {

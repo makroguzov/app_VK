@@ -8,5 +8,5 @@
 import UIKit
 
 protocol DataReloadedController: UIViewController {
-    func reloadData(with newData: [Int: TableSection])
+    func reloadData(with newData: [Int: TableSectionModel])
 }

@@ -19,23 +19,21 @@ class GetDataOperation: AsyncOperation {
     
     private var group = DispatchGroup()
     
-    private var requests: [DataRequest] = []
+    private var requests: [Int: DataRequest] = [:]
     var jsons = [Int: [String: Any]]()
     
-    init(params: [VKRequestParametrs]) {
-        for param in params {
-            requests.append(session.request(param.getBaseUrl() + param.getPath(),
+    init(params: [Int: VKRequestParametrs]) {
+        for (section, param) in params {
+            requests[section] = session.request(param.getBaseUrl() + param.getPath(),
                                       method: .get,
-                                      parameters: param.getParams())
+                                      parameters: param.getParams()
             )
         }
     }
     
     override func main() {
-        for section in 0..<requests.count {
+        for (section, request) in requests {
             group.enter()
-            
-            let request = requests[section]
             getJSON(for: section, request)
         }
         
@@ -63,7 +61,7 @@ class GetDataOperation: AsyncOperation {
     }
     
     override func cancel() {
-        for request in requests {
+        for request in requests.values {
             request.cancel()
             super.cancel()
         }

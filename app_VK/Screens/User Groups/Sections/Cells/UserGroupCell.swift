@@ -11,6 +11,7 @@ class UserGroupCell: UITableViewCell {
 
     static let identifier = "UserGroupCell"
     static let nibName = "UserGroupCell"
+    static let height: CGFloat = 70
     
     @IBOutlet weak var groupImageView: UIImageView! {
         didSet {

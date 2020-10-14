@@ -7,11 +7,17 @@
 
 import UIKit
 
-class UserGroupsSection: TableSection {
+class UserGroupsSection: TableSectionModel {
+        
+    override func height(for row: Int) -> CGFloat {
+        return UserGroupCell.height
+    }
+
+    override func heightForHeaderInSection() -> CGFloat {
+        return 20
+    }
     
-    var rows: [UITableViewCell]
-    
-    required init(rows: [UITableViewCell]) {
-        self.rows = rows
+    override func titleForHeaderInSection() -> String? {
+        return "Группы: \(self.getCellsCount())"
     }
 }

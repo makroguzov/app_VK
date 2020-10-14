@@ -7,11 +7,10 @@
 
 import UIKit
 
-class UserGroupsInvitationsSection: TableSection {
-    
-    var rows: [UITableViewCell]
-    
-    required init(rows: [UITableViewCell]) {
-        self.rows = rows
+class UserGroupsInvitationsSection: TableSectionModel {
+ 
+    override func height(for row: Int) -> CGFloat {
+        return GroupsInvitationCell.height
     }
+    
 }

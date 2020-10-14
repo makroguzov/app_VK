@@ -15,7 +15,7 @@ class Parser {
         self.tableView = tableView
     }
     
-    func parseData(with jsons: [Int: [String: Any]]) -> [Int: TableSection] {
+    func parseData(with jsons: [Int: [String: Any]]) -> [Int: TableSectionModel] {
         return [:]
     }
     

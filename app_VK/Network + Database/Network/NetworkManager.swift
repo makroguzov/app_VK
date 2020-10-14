@@ -22,7 +22,7 @@ class NetworkManager {
         self.parser = parser
     }
     
-    func loadData(with params: [VKRequestParametrs]) {
+    func loadData(with params: [Int: VKRequestParametrs]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
                 return

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserGroupsParser: Parser {
     
@@ -26,12 +27,12 @@ class UserGroupsParser: Parser {
     private let group = DispatchGroup()
 
     
-    override func parseData(with jsons: [Int: [String : Any]]) -> [Int: TableSection] {
+    override func parseData(with jsons: [Int: [String : Any]]) -> [Int: TableSectionModel] {
         guard !jsons.isEmpty else {
             return [:]
         }
         
-        var sections = [Int: TableSection]()
+        var sections = [Int: TableSectionModel]()
 
         for (sectionNum, json) in jsons {
             
@@ -47,7 +48,7 @@ class UserGroupsParser: Parser {
         return sections
     }
     
-    private func parseJSON(_ json: [String: Any], for section: Int) throws -> TableSection {
+    private func parseJSON(_ json: [String: Any], for section: Int) throws -> TableSectionModel {
         do {
             if section == 0 {
                 let invitationsSection = try getInvitationsSection(with: json)
@@ -120,6 +121,7 @@ class UserGroupsParser: Parser {
             fatalError()
         }
         
+        cell.groupImageView.sd_setImage(with: URL(string: group.photo100), completed: nil)
         cell.nameLable.text = group.name
         cell.subtitleLable.text = group.screenName
         
@@ -176,7 +178,13 @@ class UserGroupsParser: Parser {
     }
     
     private func createInvitationSection(with invitations: Invitations) -> UserGroupsInvitationsSection {
-        return UserGroupsInvitationsSection(rows: [])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsInvitationCell.identifier) as? GroupsInvitationCell else {
+            print("Can't find cell: GroupsInvitationCell")
+            fatalError()
+        }
+        
+        
+        return UserGroupsInvitationsSection(rows: [cell])
     }
-    
+
 }
