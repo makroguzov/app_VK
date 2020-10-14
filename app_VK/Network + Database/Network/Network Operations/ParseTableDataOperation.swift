@@ -10,7 +10,7 @@ import Foundation
 class ParseTableDataOperation: Operation {
     
     private var parser: Parser
-    var sections = [TableSection]()
+    var sections = [Int: TableSectionModel]()
  
     init(parser: Parser) {
         self.parser = parser
@@ -22,12 +22,13 @@ class ParseTableDataOperation: Operation {
             return
         }
         
-        if let json = data.json {
-            let sections = parser.parseData(with: json)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let sections = self.parser.parseData(with: data.jsons)
             self.sections = sections
-        } else {
-            print("Can't find json in class: ParseDataOperation at function \(#function)")
         }
-        
     }
 }
