@@ -15,6 +15,9 @@ class User: Codable {
         case lastName = "last_name"
         case isClosed = "is_closed"
         case canAccessClosed = "can_access_closed"
+        case photo50 = "photo_50"
+        case photo100 = "photo_100"
+        case photo200 = "photo_200"
     }
     
     let id: Int
@@ -31,6 +34,10 @@ class User: Codable {
     let activities: String?
     let bdate: String? //Возвращается в формате D.M.YYYY или D.M (если год рождения скрыт)
     let city: City?
+    
+    let photo50: String?
+    let photo100: String?
+    let photo200: String?
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingCeys.self)
@@ -49,5 +56,9 @@ class User: Codable {
         activities = try? container.decode(String.self, forKey: .activities)
         bdate = try? container.decode(String.self, forKey: .bdate)
         city = try? container.decode(City.self, forKey: .city)
+        
+        photo50 = try? container.decode(String.self, forKey: .photo50)
+        photo100 = try? container.decode(String.self, forKey: .photo100)
+        photo200 = try? container.decode(String.self, forKey: .photo200)
     }
 }

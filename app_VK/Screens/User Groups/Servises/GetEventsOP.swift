@@ -1,26 +1,21 @@
 //
-//  GetDataOperation.swift
+//  UserGroupsGetDataOP.swift
 //  app_VK
 //
-//  Created by Валерий Макрогузов on 10.10.2020.
+//  Created by Валерий Макрогузов on 15.10.2020.
 //
 
 import Foundation
 import Alamofire
 
-class GetDataOperation: AsyncOperation {
+class GetEventsOP: AsyncOperation {
     
-    private let session: Alamofire.Session = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 20
-        let session = Alamofire.Session(configuration: configuration)
-        return session
-    }()
+    private var requests: [SectionID: DataRequest] = [:]
     
-    private var group = DispatchGroup()
     
-    private var requests: [Int: DataRequest] = [:]
-    var jsons = [Int: [String: Any]]()
+    var friends = JSON()
+    var events = JSON()
+    
     
     init(params: [Int: VKRequestParametrs]) {
         for (section, param) in params {
@@ -48,7 +43,7 @@ class GetDataOperation: AsyncOperation {
             
             switch response.result {
             case let .success(json):
-                guard let response = (json as? [String: Any])?["response"] as? [String: Any] else {
+                guard let response = (json as? JSON)?["response"] as? JSON else {
                     print("Problems with losding data in class: GetDataOperation, at function: \(#function). Response is not exist.")
                     return
                 }
@@ -59,11 +54,5 @@ class GetDataOperation: AsyncOperation {
             }
         }
     }
-    
-    override func cancel() {
-        for request in requests.values {
-            request.cancel()
-            super.cancel()
-        }
-    }
+
 }
