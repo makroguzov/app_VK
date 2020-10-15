@@ -88,8 +88,8 @@
                 <outlet property="evenNametLable" destination="7Qf-0e-YOO" id="rit-Wy-dZC"/>
                 <outlet property="eventImageView" destination="ZIg-Fj-bw5" id="a9H-A3-Qyd"/>
                 <outlet property="invitorImageView" destination="hE0-bN-5i8" id="nMl-eu-g7u"/>
+                <outlet property="invitorNameLable" destination="bWb-jM-v6k" id="a1q-u0-LGO"/>
                 <outlet property="rejectButton" destination="CAe-gR-1ce" id="T0w-4w-BU2"/>
-                <outlet property="subtitleLable" destination="bWb-jM-v6k" id="4aI-Mg-yBl"/>
             </connections>
             <point key="canvasLocation" x="-59.420289855072468" y="-9.375"/>
         </tableViewCell>

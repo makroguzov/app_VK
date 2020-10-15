@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import Alamofire
+
+typealias SectionID = Int
+typealias JSON = [String: Any]
 
 class AsyncOperation: Operation {
     
@@ -16,6 +20,15 @@ class AsyncOperation: Operation {
             "is" + rawValue.capitalized
         }
     }
+    
+    static let session: Alamofire.Session = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 20
+        let session = Alamofire.Session(configuration: configuration)
+        return session
+    }()
+    
+    let group = DispatchGroup()
     
     var state: State = .ready {
         willSet {

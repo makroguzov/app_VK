@@ -24,7 +24,7 @@ class GroupsInvitationCell: UITableViewCell {
         }
     }
     @IBOutlet weak var evenNametLable: UILabel!
-    @IBOutlet weak var subtitleLable: UILabel!
+    @IBOutlet weak var invitorNameLable: UILabel!
     @IBOutlet weak var answerButton: UIButton! {
         didSet {
             answerButton.layer.cornerRadius = 10
@@ -36,6 +36,16 @@ class GroupsInvitationCell: UITableViewCell {
         }
     }
     
+    
+    var model: GroupsInvitationCellModel = .emptyState {
+        didSet {
+            updateForModel()
+        }
+    }
+    
+    func updateForModel() {
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -7,10 +7,14 @@
 
 import UIKit
 
-class UserGrouposViewControler: MVCTableViewController {
+class UserGrouposViewControler: UITableViewController {
+    
+    var viewModel: UserGroupsTableViewModel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = UserGroupsTableViewModel(tableView)
         
         setUpTableView()
         loadData()
@@ -20,8 +24,6 @@ class UserGrouposViewControler: MVCTableViewController {
         tableView.delegate = self 
         tableView.dataSource = self
         
-        print(self)
-
         tableView.register(UINib(nibName: UserGroupCell.nibName, bundle: nil), forCellReuseIdentifier: UserGroupCell.identifier)
         tableView.register(UINib(nibName: GroupsInvitationCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsInvitationCell.identifier)
     
@@ -29,18 +31,9 @@ class UserGrouposViewControler: MVCTableViewController {
     }
     
     private func loadData() {
-        guard let dataloader = viewModel.dataLoader as? UserGroupsDataLoader else {
-            print("Problems with loading data in class: \(#file) at function: \(#function). Encorrect dataLoader type")
-            return
-        }
-        
-        dataloader.load(dataFor: [.invitations, .friend])
+        viewModel.loader.load(dataFor: [.friend, .invitations])
     }
-    
-    override func reloadData(with newData: [Int: TableSectionModel]) {
-        super.reloadData(with: newData)
-        tableView.reloadData()
-    }
+
 }
 
 //MARK: UITableViewDataSource
@@ -48,8 +41,6 @@ class UserGrouposViewControler: MVCTableViewController {
 extension UserGrouposViewControler {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print(viewModel.numberOfSections())
-        
         return viewModel.numberOfSections()
     }
     
@@ -68,14 +59,14 @@ extension UserGrouposViewControler {
 extension UserGrouposViewControler {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.get(section: indexPath.section).height(for: indexPath.row)
+        return indexPath.section == 0 ? GroupsInvitationCell.height : UserGroupCell.height
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return  viewModel.get(section: section).titleForHeaderInSection()
+        return section == 0 ? "" : "Группы: \(viewModel.numberOfRowsInSection(section: section))"
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.get(section: section).heightForHeaderInSection()
+        return section == 0 ? 0 : 10
     }
 }

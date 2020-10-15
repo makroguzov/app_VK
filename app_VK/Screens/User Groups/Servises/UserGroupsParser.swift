@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class UserGroupsParser: Parser {
+class UserGroupsParser {
     
     enum Errors: Error {
         case ParsingDataError(String)
@@ -17,28 +17,21 @@ class UserGroupsParser: Parser {
         case CreateSectionError(Int)
     }
     
-    struct Invitations {
-        var items: [Group]
-        var groups: [Group]
-        var profiles: [User]
-    }
-
     private let decoder = JSONDecoder()
     private let group = DispatchGroup()
 
     
-    override func parseData(with jsons: [Int: [String : Any]]) -> [Int: TableSectionModel] {
+    func parseData(with jsons: [Int: [String : Any]]) -> [SectionID: Any] {
         guard !jsons.isEmpty else {
             return [:]
         }
         
-        var sections = [Int: TableSectionModel]()
+        var sections = [SectionID: Any]()
 
-        for (sectionNum, json) in jsons {
-            
+        for (sectionId, json) in jsons {
             do {
-                let section = try parseJSON(json, for: sectionNum)
-                sections[sectionNum] = section
+                let section = try parseJSON(json, for: sectionId)
+                sections[sectionId] = section
             } catch let Errors.CreateSectionError(section){
                 print("Problems with parsing in class: UserGroupsParser at function: \(#function). Can't create section - '\(section)'.")
             } catch {
@@ -48,7 +41,7 @@ class UserGroupsParser: Parser {
         return sections
     }
     
-    private func parseJSON(_ json: [String: Any], for section: Int) throws -> TableSectionModel {
+    private func parseJSON(_ json: JSON, for section: SectionID) throws -> Any {
         do {
             if section == 0 {
                 let invitationsSection = try getInvitationsSection(with: json)
@@ -73,7 +66,7 @@ class UserGroupsParser: Parser {
         }
     }
     
-    private func getGroupsSection(with json: [String: Any]) throws -> UserGroupsSection {
+    private func getGroupsSection(with json: [String: Any]) throws -> [UserGroupCellModel] {
         let groups: [Group]
         
         do {
@@ -82,11 +75,59 @@ class UserGroupsParser: Parser {
             throw error
         }
  
-        let groupsSection = createGroupsSection(with: groups)
+        var groupsModels = [UserGroupCellModel]()
+        for group in groups {
+            groupsModels.append(.forGroup(group))
+        }
         
-        //print(groupsSection.rows)
-        return groupsSection
+        return groupsModels
     }
+
+    private func getInvitationsSection(with json: [String: Any]) throws -> [GroupsInvitationCellModel] {
+        
+        let items: [Group]
+        let groups: [Group]
+        let profiles: [User]
+        
+        do {
+            items = try parseItems(json: json)
+            groups = try parseGroups(json: json)
+            profiles = try parseProfiles(json: json)
+        } catch let error {
+            throw error
+        }
+        
+        var models = [GroupsInvitationCellModel]()
+        
+        for event in items {
+            guard let invitorId = event.invitedBy else {
+                continue
+            }
+            
+//            if invitorId < 0 {
+//                guard let invitor = groups.filter { $0.id == -invitorId }.first else {
+//                    continue
+//                }
+//                
+//                models.append(.forEvent(event: event, invitor: invitor))
+//            } else {
+//                
+//                guard let invitor = profiles.filter { $0.id == invitorId }.first else {
+//                    <#statements#>
+//                }
+//                  
+//            }
+//            
+        }
+        
+        return models
+    }
+
+}
+
+//MARK: Parse items, groups, profiles
+
+extension UserGroupsParser {
     
     private func parseItems(json: [String: Any]) throws -> [Group] {
         if let items = json["items"] as? [Any] {
@@ -104,47 +145,6 @@ class UserGroupsParser: Parser {
         }
     }
     
-    private func createGroupsSection(with groups: [Group]) -> UserGroupsSection {
-        var rows = [UserGroupCell]()
-        
-        for group in groups {
-            let cell = self.GetCell(for: group)
-            rows.append(cell)
-        }
-        
-        return UserGroupsSection(rows: rows)
-    }
-
-    private func GetCell(for group: Group) -> UserGroupCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserGroupCell.identifier) as? UserGroupCell else {
-            print("Can't find cell: UserGroupCell.")
-            fatalError()
-        }
-        
-        cell.groupImageView.sd_setImage(with: URL(string: group.photo100), completed: nil)
-        cell.nameLable.text = group.name
-        cell.subtitleLable.text = group.screenName
-        
-        return cell
-    }
-    
-    private func getInvitationsSection(with json: [String: Any]) throws -> UserGroupsInvitationsSection {
-        let invitations: Invitations
-        
-        do {
-            let items = try parseItems(json: json)
-            let groups = try parseGroups(json: json)
-            let profiles = try parseProfiles(json: json)
-            
-            invitations = Invitations(items: items, groups: groups, profiles: profiles)
-        } catch let error {
-            throw error
-        }
-        
-        let invitetionSection = createInvitationSection(with: invitations)
-        return invitetionSection
-    }
-        
     private func parseGroups(json: [String: Any]) throws -> [Group] {
         if let groups = json["groups"] as? [Any] {
             guard let data = try? JSONSerialization.data(withJSONObject: groups, options: .withoutEscapingSlashes) else {
@@ -177,14 +177,4 @@ class UserGroupsParser: Parser {
         }
     }
     
-    private func createInvitationSection(with invitations: Invitations) -> UserGroupsInvitationsSection {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsInvitationCell.identifier) as? GroupsInvitationCell else {
-            print("Can't find cell: GroupsInvitationCell")
-            fatalError()
-        }
-        
-        
-        return UserGroupsInvitationsSection(rows: [cell])
-    }
-
 }

@@ -9,6 +9,10 @@ import UIKit
 
 class UserFriendCell: UITableViewCell {
 
+    static let identifier = "UserFriendCell"
+    static let nibName = "UserFriendCell"
+    static let height: CGFloat = 80
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

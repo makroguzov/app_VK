@@ -21,6 +21,17 @@ class UserGroupCell: UITableViewCell {
     @IBOutlet weak var nameLable: UILabel!
     @IBOutlet weak var subtitleLable: UILabel!
     
+    
+    var model: UserGroupCellModel = .emptyState {
+        didSet {
+            updateForModel()
+        }
+    }
+    
+    private func updateForModel() {
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

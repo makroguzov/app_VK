@@ -7,48 +7,72 @@
 
 import Foundation
 
-class UserGroupsDataLoader: DataLaoder {
-    
+class UserGroupsDataLoader {
+        
     enum Section {
         case friend, invitations
     }
+    
+    private var viewModel: UserGroupsTableViewModel?
+    private let queue = OperationQueue()
+    
+    init() {}
+    
+    convenience init(viewModel: UserGroupsTableViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
         
     func load(dataFor sections: [Section]) {
-        var params = [Int: VKRequestParametrs]()
-        
         for section in sections {
             switch section {
             case .friend:
-                params[1] = getGroupsParametrs()
+                getFriends()
             case .invitations:
-                params[0] = getInvitationsParametrs()
+                getEvents()
             }
         }
-
-        networkManager.loadData(with: params)
+    }
+    
+    private func getEvents() {
+        let params = getGroupsParametrs()
+        
+        let getEventsOP = GetEventsOP(param: params)
+        queue.addOperation(getEventsOP)
+        
+        let parseEventsOP = ParseEventsOP()
+        queue.addOperation(parseEventsOP)
+        parseEventsOP.addDependency(getEventsOP)
+        
+        let getProfiles = GetProfilesOP()
+        queue.addOperation(getProfiles)
+        getProfiles.addDependency(parseEventsOP)
+        
+        //let setUpViewModel = 
+    }
+    
+    private func getFriends() {
+        
     }
     
     private func getGroupsParametrs() -> VKRequestParametrs  {
-        let request = VKRequestParametrs()
-        request.set(path: .groups)
+        let request = VKRequestParametrs(path: .groups,
+                                         params: [
+                                            "user_id": Session.shared.userId,
+                                            "extended": 1
+                                        ]
+        )
 
-        let params: [String: Any] = [
-            "user_id": Session.shared.userId,
-            "extended": 1
-        ]
-        request.set(params: params)
         return request
     }
 
     private func getInvitationsParametrs() -> VKRequestParametrs {
-        let request = VKRequestParametrs()
-        request.set(path: .invites)
-        
-        let params: [String: Any] = [
-            "user_id": Session.shared.userId,
-            "extended": 1
-        ]
-        request.set(params: params)
+        let request = VKRequestParametrs(path: .invites,
+                                         params: [
+                                            "user_id": Session.shared.userId,
+                                        ]
+        )
         return request
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UserGroupsGetDataOP.swift
+//  GetEventsOP.swift
 //  app_VK
 //
 //  Created by Валерий Макрогузов on 15.10.2020.
@@ -10,49 +10,60 @@ import Alamofire
 
 class GetEventsOP: AsyncOperation {
     
-    private var requests: [SectionID: DataRequest] = [:]
+    private var request: DataRequest
     
+    var events = [JSON]()
+    var groups = [JSON]()
+    var profiles = [JSON]()
     
-    var friends = JSON()
-    var events = JSON()
-    
-    
-    init(params: [Int: VKRequestParametrs]) {
-        for (section, param) in params {
-            requests[section] = session.request(param.getBaseUrl() + param.getPath(),
-                                      method: .get,
-                                      parameters: param.getParams()
-            )
-        }
+    init(param: VKRequestParametrs) {
+        request = GetEventsOP.session.request(param.getBaseUrl() + param.getPath(),
+                                  method: .get,
+                                  parameters: param.getParams()
+        )
     }
     
     override func main() {
-        for (section, request) in requests {
-            group.enter()
-            getJSON(for: section, request)
-        }
-        
-        group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
-            self?.state = .finished
-        }
+        getJSON(with: request)
     }
     
-    private func getJSON(for section: Int, _ request: DataRequest) {
+    private func getJSON(with request: DataRequest) {
         request.responseJSON(queue: .global(qos: .userInitiated)) { [weak self] response in
-            self?.group.leave()
             
             switch response.result {
             case let .success(json):
                 guard let response = (json as? JSON)?["response"] as? JSON else {
-                    print("Problems with losding data in class: GetDataOperation, at function: \(#function). Response is not exist.")
+                    self?.printError(in: #function, error: "Response is not exist.")
                     return
                 }
                 
-                self?.jsons[section] = response
+                guard let events = response["items"] as? [JSON] else {
+                    self?.printError(in: #function, error: "Items is not exist.")
+                    return
+                }
+                
+                guard let groups = response["groups"] as? [JSON] else {
+                    self?.printError(in: #function, error: "Groups is not exist.")
+                    return
+                }
+                
+                guard let profiles = response["profiles"] as? [JSON] else {
+                    self?.printError(in: #function, error: "Profiles is not exist.")
+                    return
+                }
+                
+                self?.events = events
+                self?.groups = groups
+                self?.profiles = profiles
+                
             case let .failure(error):
-                print("Problems with losding data in class: GetDataOperation, at function: \(#function). Error: \(error.localizedDescription)")
+                self?.printError(in: #function, error: error.localizedDescription)
             }
         }
     }
 
+    
+    private func printError(in function: String, error: String) {
+        print("Problems with losding data in class: GetDataOperation, at function: \(function). \(error)")
+    }
 }
