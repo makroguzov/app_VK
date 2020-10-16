@@ -19,7 +19,7 @@ struct Creator {
     
     init(profile: User) {
         name = "\(profile.firstName) \(profile.lastName)"
-        image = profile.photo200 ?? ""
+        image = profile.photo100 ?? ""
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UserGroupCell: UITableViewCell {
 
@@ -29,7 +30,9 @@ class UserGroupCell: UITableViewCell {
     }
     
     private func updateForModel() {
-        
+        groupImageView.sd_setImage(with: URL(string: model.image), completed: nil)
+        nameLable.text = model.name
+        subtitleLable.text = model.subtitle
     }
     
     override func awakeFromNib() {

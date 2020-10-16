@@ -17,6 +17,7 @@ class VKRequestParametrs {
         case newsfeed = "/method/newsfeed.get"
         case invites = "/method/groups.getInvites"
         case groups = "/method/groups.get"
+        case users = "/method/users.get"
     }
 
     private let baseUrl: String = "https://api.vk.com"

@@ -11,7 +11,7 @@ protocol TableViewModel {
 
     var tableView: UITableView { get }
     
-    init(_ tableView: UITableView)
+    init(_ tableView: UITableView, controller: UIViewController)
     
     func numberOfSections() -> Int
     func numberOfRowsInSection(section: SectionID) -> Int

@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class GroupsInvitationCell: UITableViewCell {
 
     static let identifier = "GroupsInvitationCell"
     static let nibName = "GroupsInvitationCell"
-    static let height: CGFloat = 100
+    static let height: CGFloat = 110
     
     @IBOutlet weak var eventImageView: UIImageView! {
         didSet {
@@ -28,11 +29,17 @@ class GroupsInvitationCell: UITableViewCell {
     @IBOutlet weak var answerButton: UIButton! {
         didSet {
             answerButton.layer.cornerRadius = 10
+            answerButton.backgroundColor = .blue
+            answerButton.setTitleColor(.white, for: .normal)
+            answerButton.setTitle("Ответить", for: .normal)
         }
     }
     @IBOutlet weak var rejectButton: UIButton! {
         didSet {
             rejectButton.layer.cornerRadius = 10
+            rejectButton.backgroundColor = .lightGray
+            rejectButton.setTitleColor(.blue, for: .normal)
+            rejectButton.setTitle("Отклонить", for: .normal)
         }
     }
     
@@ -44,7 +51,10 @@ class GroupsInvitationCell: UITableViewCell {
     }
     
     func updateForModel() {
-        
+        eventImageView.sd_setImage(with: URL(string: model.eventImage), completed: nil)
+        invitorImageView.sd_setImage(with: URL(string: model.invitorImage), completed: nil)
+        evenNametLable.text = model.evenName
+        invitorNameLable.text = model.invitorName
     }
     
     override func awakeFromNib() {

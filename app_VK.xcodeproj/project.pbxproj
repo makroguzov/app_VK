@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		714C7E972538EB960087D71A /* SetUpGroupsModelOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C7E962538EB960087D71A /* SetUpGroupsModelOP.swift */; };
+		714C7E9C2538F3F80087D71A /* ParseGroupsOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C7E9B2538F3F80087D71A /* ParseGroupsOP.swift */; };
 		714E1E122534D6F400D605EF /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E1E112534D6F400D605EF /* VKLoginViewController.swift */; };
 		715411E32537420B00DA1853 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715411E22537420B00DA1853 /* UserFriendsViewController.swift */; };
 		715412062537565A00DA1853 /* UserFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715412042537565A00DA1853 /* UserFriendCell.swift */; };
@@ -35,7 +37,6 @@
 		71607F472531D2D700017010 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F462531D2D700017010 /* AsyncOperation.swift */; };
 		71607F8E2531EE1B00017010 /* UserGrouposViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F8D2531EE1B00017010 /* UserGrouposViewControler.swift */; };
 		71607F992531F03400017010 /* UserGroupsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F982531F03400017010 /* UserGroupsTableViewModel.swift */; };
-		71607F9E2531F26B00017010 /* UserGroupsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607F9D2531F26B00017010 /* UserGroupsParser.swift */; };
 		71607FA92531F58C00017010 /* UserGroupsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FA82531F58C00017010 /* UserGroupsDataLoader.swift */; };
 		71607FBD253336FB00017010 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FBC253336FB00017010 /* Group.swift */; };
 		71607FC225334B9C00017010 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FC125334B9C00017010 /* User.swift */; };
@@ -62,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		0AFE7EAA543A9D6C73F82757 /* Pods_app_VK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_VK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		714C7E962538EB960087D71A /* SetUpGroupsModelOP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpGroupsModelOP.swift; sourceTree = "<group>"; };
+		714C7E9B2538F3F80087D71A /* ParseGroupsOP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseGroupsOP.swift; sourceTree = "<group>"; };
 		714E1E112534D6F400D605EF /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		715411E22537420B00DA1853 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
 		715412042537565A00DA1853 /* UserFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendCell.swift; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		71607F462531D2D700017010 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		71607F8D2531EE1B00017010 /* UserGrouposViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGrouposViewControler.swift; sourceTree = "<group>"; };
 		71607F982531F03400017010 /* UserGroupsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsTableViewModel.swift; sourceTree = "<group>"; };
-		71607F9D2531F26B00017010 /* UserGroupsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsParser.swift; sourceTree = "<group>"; };
 		71607FA82531F58C00017010 /* UserGroupsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupsDataLoader.swift; sourceTree = "<group>"; };
 		71607FBC253336FB00017010 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		71607FC125334B9C00017010 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -296,12 +298,13 @@
 		71607FB8253334EC00017010 /* Servises */ = {
 			isa = PBXGroup;
 			children = (
-				71607F9D2531F26B00017010 /* UserGroupsParser.swift */,
 				71607FA82531F58C00017010 /* UserGroupsDataLoader.swift */,
 				7154128C25385AAE00DA1853 /* GetEventsOP.swift */,
+				7154129125385AD500DA1853 /* ParseEventsOP.swift */,
 				715412C425387BEC00DA1853 /* GetProfilesOP.swift */,
 				715412B6253867FB00DA1853 /* GetGroupsOP.swift */,
-				7154129125385AD500DA1853 /* ParseEventsOP.swift */,
+				714C7E9B2538F3F80087D71A /* ParseGroupsOP.swift */,
+				714C7E962538EB960087D71A /* SetUpGroupsModelOP.swift */,
 			);
 			path = Servises;
 			sourceTree = "<group>";
@@ -503,10 +506,10 @@
 				71607F992531F03400017010 /* UserGroupsTableViewModel.swift in Sources */,
 				7154126025379A6E00DA1853 /* GroupsInvitationCell.swift in Sources */,
 				71607F1A2531960100017010 /* VKRequestParametrs.swift in Sources */,
-				71607F9E2531F26B00017010 /* UserGroupsParser.swift in Sources */,
 				71607FC725334CEE00017010 /* City.swift in Sources */,
 				715411E32537420B00DA1853 /* UserFriendsViewController.swift in Sources */,
 				71607F30253196D900017010 /* RealmService.swift in Sources */,
+				714C7E9C2538F3F80087D71A /* ParseGroupsOP.swift in Sources */,
 				7154129225385AD500DA1853 /* ParseEventsOP.swift in Sources */,
 				715412062537565A00DA1853 /* UserFriendCell.swift in Sources */,
 				71607F8E2531EE1B00017010 /* UserGrouposViewControler.swift in Sources */,
@@ -522,6 +525,7 @@
 				71607FBD253336FB00017010 /* Group.swift in Sources */,
 				71607FC225334B9C00017010 /* User.swift in Sources */,
 				7154128025379E4300DA1853 /* UserGroupCellModel.swift in Sources */,
+				714C7E972538EB960087D71A /* SetUpGroupsModelOP.swift in Sources */,
 				7154128D25385AAE00DA1853 /* GetEventsOP.swift in Sources */,
 				715412B7253867FB00DA1853 /* GetGroupsOP.swift in Sources */,
 				71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */,

@@ -43,12 +43,14 @@ class GetGroupsOP: AsyncOperation {
             case let .failure(error):
                 self?.printError(in: #function, error: error.localizedDescription)
             }
+            
+            self?.state = .finished
         }
     }
 
     
     private func printError(in function: String, error: String) {
-        print("Problems with losding data in class: GetDataOperation, at function: \(function). \(error)")
+        print("Problems with losding data in class: GetGroupsOP, at function: \(function). \(error)")
     }
 
     

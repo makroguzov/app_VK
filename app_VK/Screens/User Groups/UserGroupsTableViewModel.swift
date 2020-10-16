@@ -10,7 +10,8 @@ import UIKit
 class UserGroupsTableViewModel: TableViewModel {
  
     private enum Section: Int {
-        case events, friends
+        case events = 0
+        case friends = 1
     }
     
     var loader = UserGroupsDataLoader()
@@ -20,9 +21,9 @@ class UserGroupsTableViewModel: TableViewModel {
     private var events = [GroupsInvitationCellModel]()
     private var friends = [UserGroupCellModel]()
     
-    required init(_ tableView: UITableView) {
+    required init(_ tableView: UITableView, controller: UIViewController) {
         self.tableView = tableView
-        self.loader = UserGroupsDataLoader(viewModel: self)
+        self.loader = UserGroupsDataLoader(viewModel: self, controller: controller)
     }
         
     func numberOfSections() -> Int {
@@ -68,37 +69,28 @@ class UserGroupsTableViewModel: TableViewModel {
     
     func insert(models: [SectionID: Any]) {
 
-        for (sectionId, models) in models.enumerated() {
+        for (sectionId, models) in models {
             let section = Section(rawValue: sectionId)
-              
+
             switch section {
             case .events:
-                guard let events = models.value as? [GroupsInvitationCellModel] else {
-                    print("Error in class: UserGroupsViewModel af function: \(#function). Cant setup viewModel with [GroupsInvitationCellModel], because of incorrect type.")
+                guard let events = models as? [GroupsInvitationCellModel] else {
+                    printError(in: #function, error: "Cant setup viewModel with [GroupsInvitationCellModel], because of incorrect type.")
                     return
                 }
                 
                 self.events = events
-                
-                let insertions = Array(0 ..< events.count)
-                let indexPaths = insertions.map { IndexPath(row: $0, section: 0) }
-                
-                tableView.insertRows(at: indexPaths, with: .automatic)
-                
+                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             case .friends:
-                guard let friends = models.value as? [UserGroupCellModel] else {
-                    print("Error in class: UserGroupsViewModel af function: \(#function). Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
+                guard let friends = models as? [UserGroupCellModel] else {
+                    printError(in: #function, error: "Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
                     return
                 }
                 
                 self.friends = friends
-                
-                let insertions = Array(0 ..< friends.count)
-                let indexPaths = insertions.map { IndexPath(row: $0, section: 1) }
-                tableView.insertRows(at: indexPaths, with: .automatic)
-               
+                tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
             default:
-                print("Error in class: UserGroupsViewModel af function: \(#function). Incorrect data format.")
+                printError(in: #function, error: "Incorrect data format.")
                 return
             }
         }
@@ -125,7 +117,7 @@ class UserGroupsTableViewModel: TableViewModel {
                 
             case .friends:
                 guard let friends = models.value as? [UserGroupCellModel] else {
-                    print("Error in class: UserGroupsViewModel af function: \(#function). Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
+                    printError(in: #function, error: "Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
                     return
                 }
                 
@@ -136,7 +128,7 @@ class UserGroupsTableViewModel: TableViewModel {
                 tableView.reloadRows(at: indexPaths, with: .automatic)
                 
             default:
-                print("Error in class: UserGroupsViewModel af function: \(#function). Incorrect data format.")
+                printError(in: #function, error: "Incorrect data format.")
                 return
             }
         }
@@ -147,5 +139,7 @@ class UserGroupsTableViewModel: TableViewModel {
         
     }
     
-    
+    private func printError(in function: String, error: String) {
+        print("Problems with losding data in class: UserGroupsTableViewModel, at function: \(function). \(error)")
+    }
 }

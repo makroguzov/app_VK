@@ -14,7 +14,7 @@ class UserGrouposViewControler: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = UserGroupsTableViewModel(tableView)
+        viewModel = UserGroupsTableViewModel(tableView, controller: self)
         
         setUpTableView()
         loadData()
@@ -63,10 +63,11 @@ extension UserGrouposViewControler {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "" : "Группы: \(viewModel.numberOfRowsInSection(section: section))"
+        return section == 0 ? "Приглашения: \(viewModel.numberOfRowsInSection(section: section))" :
+            "Группы: \(viewModel.numberOfRowsInSection(section: section))"
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 10
+        return section == 0 ? 50 : 50
     }
 }

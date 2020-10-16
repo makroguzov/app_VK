@@ -12,9 +12,9 @@ class GetEventsOP: AsyncOperation {
     
     private var request: DataRequest
     
-    var events = [JSON]()
-    var groups = [JSON]()
-    var profiles = [JSON]()
+    var events: [JSON]?
+    var groups: [JSON]?
+    var profiles: [JSON]?
     
     init(param: VKRequestParametrs) {
         request = GetEventsOP.session.request(param.getBaseUrl() + param.getPath(),
@@ -52,18 +52,27 @@ class GetEventsOP: AsyncOperation {
                     return
                 }
                 
+                            
                 self?.events = events
                 self?.groups = groups
                 self?.profiles = profiles
-                
+                                
+                #if DEBUG
+                print("Load Events by GetEventsOP: ", self?.events ?? "nil")
+                print("Load Profiles by GetEventsOP: ", self?.profiles ?? "nil")
+                print("Load Groups by GetEventsOP: ", self?.groups ?? "nil")
+                #endif
+
             case let .failure(error):
                 self?.printError(in: #function, error: error.localizedDescription)
             }
+            
+            self?.state = .finished
         }
     }
 
-    
     private func printError(in function: String, error: String) {
-        print("Problems with losding data in class: GetDataOperation, at function: \(function). \(error)")
+        print("Problems with losding data in class: GetEventsOP, at function: \(function). \(error)")
     }
+
 }
