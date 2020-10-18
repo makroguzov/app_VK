@@ -71,4 +71,11 @@ class AsyncOperation: Operation {
         super.cancel()
         state = .finished
     }
+    
+    static func getRequest(with params: VKRequestParametrs) -> DataRequest {
+        return AlamofireSession.shared.session.request(params.getBaseUrl(),
+                                                       method: .get,
+                                                       parameters: params.getParams())
+    }
+    
 }

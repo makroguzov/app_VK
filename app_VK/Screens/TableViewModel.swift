@@ -10,6 +10,7 @@ import UIKit
 protocol TableViewModel {
 
     var tableView: UITableView { get }
+    var controller: UIViewController { get }
     
     init(_ tableView: UITableView, controller: UIViewController)
     

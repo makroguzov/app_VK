@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="RequestForFrCell" customModule="app_VK" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vCq-II-hoT">
+                        <rect key="frame" x="10" y="10" width="365" height="30"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mm-R2-UQo">
+                                <rect key="frame" x="0.0" y="0.0" width="172.5" height="30"/>
+                                <state key="normal" image="barcode.viewfinder" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-0O-M1i">
+                                <rect key="frame" x="192.5" y="0.0" width="172.5" height="30"/>
+                                <state key="normal" image="person.badge.plus" catalog="system"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-20" translatesAutoresizingMaskIntoConstraints="NO" id="hxa-WT-Xbe">
+                        <rect key="frame" x="10" y="50" width="110" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3O9-Jq-TQ5">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3O9-Jq-TQ5" secondAttribute="height" multiplier="1:1" id="Ne2-mj-7Gt"/>
+                                    <constraint firstAttribute="width" constant="50" id="WGX-xr-2u5"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m26-db-Z1N">
+                                <rect key="frame" x="30" y="0.0" width="50" height="50"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8tq-OR-b8B">
+                                <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заявки в друзья" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Da-qA-XYk">
+                        <rect key="frame" x="137" y="64.5" width="238" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7Da-qA-XYk" firstAttribute="leading" secondItem="hxa-WT-Xbe" secondAttribute="trailing" constant="17" id="9xu-2V-olW"/>
+                    <constraint firstItem="vCq-II-hoT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="GSW-CM-9fc"/>
+                    <constraint firstItem="hxa-WT-Xbe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="NjU-JB-a4b"/>
+                    <constraint firstAttribute="trailing" secondItem="vCq-II-hoT" secondAttribute="trailing" constant="10" id="Qxk-2X-ufV"/>
+                    <constraint firstItem="hxa-WT-Xbe" firstAttribute="top" secondItem="vCq-II-hoT" secondAttribute="bottom" constant="10" id="T3u-fD-lfc"/>
+                    <constraint firstItem="vCq-II-hoT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WyO-hO-NxU"/>
+                    <constraint firstAttribute="trailing" secondItem="7Da-qA-XYk" secondAttribute="trailing" constant="10" id="d80-Kj-eJh"/>
+                    <constraint firstAttribute="bottom" secondItem="hxa-WT-Xbe" secondAttribute="bottom" constant="10" id="qlV-Cg-fP8"/>
+                    <constraint firstAttribute="bottom" secondItem="7Da-qA-XYk" secondAttribute="bottom" constant="25" id="yp0-Pq-63j"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addFriendButton" destination="zvP-0O-M1i" id="ho1-Ps-hYl"/>
+                <outlet property="imageView1" destination="3O9-Jq-TQ5" id="jFO-6h-hby"/>
+                <outlet property="imageView2" destination="m26-db-Z1N" id="lSd-aJ-rMF"/>
+                <outlet property="imageView3" destination="8tq-OR-b8B" id="gDp-Hp-WYN"/>
+                <outlet property="scanQRButton" destination="4mm-R2-UQo" id="w7f-iA-iNR"/>
+            </connections>
+            <point key="canvasLocation" x="142.75362318840581" y="120.53571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="person.badge.plus" catalog="system" width="128" height="124"/>
+    </resources>
+</document>

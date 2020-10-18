@@ -9,11 +9,13 @@ import UIKit
 
 class UserFriendsViewController: UITableViewController {
     
-    private var viewModel: TableViewModel!
-    
+    private var viewModel: UserFriendsViewModel!
+    private typealias Sections = UserFriendsViewModel.Sections
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = UserFriendsViewModel(tableView, controller: self)
         
         setUpTableView()
         loadData()
@@ -24,20 +26,18 @@ class UserFriendsViewController: UITableViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: UserFriendCell.nibName, bundle: nil), forCellReuseIdentifier: UserFriendCell.identifier)
-        //tableView.register(UINib(nibName: GroupsInvitationCell.nibName, bundle: nil), forCellReuseIdentifier: GroupsInvitationCell.identifier)
+        tableView.register(UINib(nibName: RequestForFrCell.nibName, bundle: nil), forCellReuseIdentifier: RequestForFrCell.identifier)
     
         tableView.separatorStyle = .none
     }
 
     func loadData() {
-
+        viewModel.loader.loadData(for: [.friends, .requestsForFriends])
     }
     
-    func update(section: Int, deletions: [Int], insertions: [Int], modifications: [Int]) {
-        
-    }
-
 }
+
+//MARK: UITableViewDataSource
 
 extension UserFriendsViewController {
     
@@ -60,7 +60,16 @@ extension UserFriendsViewController {
 extension UserFriendsViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        guard let section = Sections(rawValue: indexPath.section) else {
+            return 0
+        }
+        
+        switch section {
+        case .requestsForFriends:
+            return RequestForFrCell.height
+        default:
+            return UserFriendCell.height
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

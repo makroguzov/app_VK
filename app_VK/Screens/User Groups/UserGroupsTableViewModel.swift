@@ -8,21 +8,24 @@
 import UIKit
 
 class UserGroupsTableViewModel: TableViewModel {
- 
+    
     private enum Section: Int {
         case events = 0
         case friends = 1
     }
     
     var loader = UserGroupsDataLoader()
+    
     var tableView: UITableView
-
+    var controller: UIViewController
     
     private var events = [GroupsInvitationCellModel]()
     private var friends = [UserGroupCellModel]()
     
     required init(_ tableView: UITableView, controller: UIViewController) {
         self.tableView = tableView
+        self.controller = controller
+        
         self.loader = UserGroupsDataLoader(viewModel: self, controller: controller)
     }
         
