@@ -12,7 +12,7 @@ class RequestForFrCell: UITableViewCell {
 
     static let nibName = "RequestForFrCell"
     static let identifier = "RequestForFrCell"
-    static let height: CGFloat = 110
+    static let height: CGFloat = 120
     
     @IBOutlet private weak var imageView1: UIImageView! {
         didSet {

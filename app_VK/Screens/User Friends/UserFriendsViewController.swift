@@ -10,7 +10,7 @@ import UIKit
 class UserFriendsViewController: UITableViewController {
     
     private var viewModel: UserFriendsViewModel!
-    private typealias Sections = UserFriendsViewModel.Sections
+    private typealias Section = UserFriendsViewModel.Section
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +60,8 @@ extension UserFriendsViewController {
 extension UserFriendsViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let section = Sections(rawValue: indexPath.section) else {
-            return 0
-        }
-        
-        switch section {
-        case .requestsForFriends:
+        switch indexPath.section {
+        case 0:
             return RequestForFrCell.height
         default:
             return UserFriendCell.height

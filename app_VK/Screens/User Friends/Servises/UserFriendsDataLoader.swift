@@ -73,16 +73,27 @@ class UserFriendsDataLoader {
             guard let self = self else {
                 return
             }
+               
+            typealias Section = UserFriendsViewModel.Section
+            var models = [Section]()
             
-            typealias Sections = UserFriendsViewModel.Sections
+            if !self.requestsForFr.isEmpty {
+                models.append(.requestsForFriends([.forRequests(reqquests: self.requestsForFr)]))
+            }
             
-            self.viewModel.insert(models: [
-                Sections.requestsForFriends.rawValue: self.requestsForFr,
-                Sections.birthdays.rawValue: self.birthdays,
-                Sections.friends.rawValue: self.friends,
-                Sections.mostImportant.rawValue: self.impFriends
-            ])
-            
+            if !self.impFriends.isEmpty {
+                models.append(.mostImportant(self.impFriends))
+            }
+
+            if !self.birthdays.isEmpty {
+                models.append(.birthdays(self.birthdays))
+            }
+
+            if !self.friends.isEmpty {
+                models.append(.friends(self.friends))
+            }
+        
+            self.viewModel.insert(models: models)
             self.hud.dismiss(animated: true)
         }
     }

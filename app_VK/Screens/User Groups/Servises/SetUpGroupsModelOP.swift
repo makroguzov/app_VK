@@ -20,7 +20,7 @@ class SetUpGroupsModelOP: Operation {
             if let data = dependence as? ParseGroupsOP {
                 
                 let models: [UserGroupCellModel] = data.groups.map { .forGroup($0) }
-                viewModel?.insert(models: [1: models])
+                viewModel?.insert(models: [.friends(models)])
             }
             
             if let data = dependence as? GetProfilesOP {
@@ -56,7 +56,7 @@ class SetUpGroupsModelOP: Operation {
                 }
                 
                 print(models)
-                viewModel?.insert(models: [0: models])
+                viewModel?.insert(models: [.events(models)])
             }
         }
     }

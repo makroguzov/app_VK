@@ -75,7 +75,7 @@ class GetFriendsOP: AsyncOperation {
                                   params: [
                                     "order": "hints",
                                     "offset": 5,
-                                    "count": 20,
+                                    //"count": 20,
                                     "fields": "photo_100,bdate"
                                   ]
         )
