@@ -25,3 +25,9 @@ protocol TableViewModel {
     func delete(models at: [IndexPath])
     
 }
+
+extension TableViewModel {
+    func printError(at function: String, error: String) {
+        print("Error in class: \(#file) at function: \(function). \(error)")
+    }
+}

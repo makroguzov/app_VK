@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CellForButtonsDelegate {
+    func didTapCompleteButton(indexPath: IndexPath)
+}	
+
 class UserNewsViewController: UITableViewController {
     
     private var viewModel: UserNewsViewModel!
@@ -18,3 +22,5 @@ class UserNewsViewController: UITableViewController {
     }
     
 }
+
+
