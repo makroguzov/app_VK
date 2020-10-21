@@ -50,6 +50,10 @@
 		71607FBD253336FB00017010 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FBC253336FB00017010 /* Group.swift */; };
 		71607FC225334B9C00017010 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FC125334B9C00017010 /* User.swift */; };
 		71607FC725334CEE00017010 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71607FC625334CEE00017010 /* City.swift */; };
+		71897A2725403EE1001FCAD1 /* UserNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71897A2625403EE1001FCAD1 /* UserNewsViewController.swift */; };
+		71897A2F25403EEF001FCAD1 /* UserNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71897A2E25403EEF001FCAD1 /* UserNewsViewModel.swift */; };
+		71897A3525403F96001FCAD1 /* UserNewsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71897A3425403F96001FCAD1 /* UserNewsDataLoader.swift */; };
+		71897A4425404BF6001FCAD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71897A4325404BF6001FCAD1 /* Post.swift */; };
 		8F2C732CDA2B217EEDA0881A /* Pods_app_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AFE7EAA543A9D6C73F82757 /* Pods_app_VK.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +125,10 @@
 		71607FBC253336FB00017010 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		71607FC125334B9C00017010 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		71607FC625334CEE00017010 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		71897A2625403EE1001FCAD1 /* UserNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNewsViewController.swift; sourceTree = "<group>"; };
+		71897A2E25403EEF001FCAD1 /* UserNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNewsViewModel.swift; sourceTree = "<group>"; };
+		71897A3425403F96001FCAD1 /* UserNewsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNewsDataLoader.swift; sourceTree = "<group>"; };
+		71897A4325404BF6001FCAD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E5E22113557A8DC22F637106 /* Pods-app_VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.debug.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.debug.xcconfig"; sourceTree = "<group>"; };
 		FF60FCC467720103FE1960AC /* Pods-app_VK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_VK.release.xcconfig"; path = "Target Support Files/Pods-app_VK/Pods-app_VK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				71607F3B253198AC00017010 /* TableViewModel.swift */,
+				71897A2525403EC5001FCAD1 /* User News */,
 				715411E1253741D300DA1853 /* User Friends */,
 				71607F892531EDB100017010 /* User Groups */,
 				714E1E112534D6F400D605EF /* VKLoginViewController.swift */,
@@ -275,6 +284,7 @@
 				71607FBC253336FB00017010 /* Group.swift */,
 				71607FC125334B9C00017010 /* User.swift */,
 				71607FC625334CEE00017010 /* City.swift */,
+				71897A4325404BF6001FCAD1 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,6 +342,24 @@
 				715412B6253867FB00DA1853 /* GetGroupsOP.swift */,
 				714C7E9B2538F3F80087D71A /* ParseGroupsOP.swift */,
 				714C7E962538EB960087D71A /* SetUpGroupsModelOP.swift */,
+			);
+			path = Servises;
+			sourceTree = "<group>";
+		};
+		71897A2525403EC5001FCAD1 /* User News */ = {
+			isa = PBXGroup;
+			children = (
+				71897A3325403F80001FCAD1 /* Servises */,
+				71897A2E25403EEF001FCAD1 /* UserNewsViewModel.swift */,
+				71897A2625403EE1001FCAD1 /* UserNewsViewController.swift */,
+			);
+			path = "User News";
+			sourceTree = "<group>";
+		};
+		71897A3325403F80001FCAD1 /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+				71897A3425403F96001FCAD1 /* UserNewsDataLoader.swift */,
 			);
 			path = Servises;
 			sourceTree = "<group>";
@@ -539,11 +567,14 @@
 				7131CBAC253995D40039F47E /* UserFriendsViewModel.swift in Sources */,
 				715411E32537420B00DA1853 /* UserFriendsViewController.swift in Sources */,
 				71607F30253196D900017010 /* RealmService.swift in Sources */,
+				71897A2725403EE1001FCAD1 /* UserNewsViewController.swift in Sources */,
+				71897A3525403F96001FCAD1 /* UserNewsDataLoader.swift in Sources */,
 				714C7E9C2538F3F80087D71A /* ParseGroupsOP.swift in Sources */,
 				7154129225385AD500DA1853 /* ParseEventsOP.swift in Sources */,
 				715412062537565A00DA1853 /* UserFriendCell.swift in Sources */,
 				71607F8E2531EE1B00017010 /* UserGrouposViewControler.swift in Sources */,
 				7131CBB2253996940039F47E /* UserFriendsDataLoader.swift in Sources */,
+				71897A2F25403EEF001FCAD1 /* UserNewsViewModel.swift in Sources */,
 				7131CBBD25399A760039F47E /* UserFriendCellModel.swift in Sources */,
 				7131CBD5253C5CAF0039F47E /* RequestForFrCell.swift in Sources */,
 				7131CBCF2539BDFD0039F47E /* GetRequestsForFrOP.swift in Sources */,
@@ -563,6 +594,7 @@
 				714C7E972538EB960087D71A /* SetUpGroupsModelOP.swift in Sources */,
 				7154128D25385AAE00DA1853 /* GetEventsOP.swift in Sources */,
 				715412B7253867FB00DA1853 /* GetGroupsOP.swift in Sources */,
+				71897A4425404BF6001FCAD1 /* Post.swift in Sources */,
 				71607EAE253186AD00017010 /* SceneDelegate.swift in Sources */,
 				7131CBC22539A3090039F47E /* AlamofireSession.swift in Sources */,
 			);

@@ -74,7 +74,7 @@ class UserFriendsDataLoader {
                 return
             }
                
-            typealias Section = UserFriendsViewModel.Section
+            typealias Section = UserFriendsViewModel.Sections
             var models = [Section]()
             
             if !self.requestsForFr.isEmpty {

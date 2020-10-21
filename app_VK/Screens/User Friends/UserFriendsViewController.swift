@@ -10,7 +10,7 @@ import UIKit
 class UserFriendsViewController: UITableViewController {
     
     private var viewModel: UserFriendsViewModel!
-    private typealias Section = UserFriendsViewModel.Section
+    private typealias Section = UserFriendsViewModel.Sections
     
     override func viewDidLoad() {
         super.viewDidLoad()

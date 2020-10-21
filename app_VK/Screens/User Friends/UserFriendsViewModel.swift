@@ -9,14 +9,14 @@ import UIKit
 
 class UserFriendsViewModel: TableViewModel {
 
-    enum Section {
+    enum Sections {
         case requestsForFriends([RequestForFrCellModel])
         case mostImportant([UserFriendCellModel])
         case birthdays([UserFriendCellModel])
         case friends([UserFriendCellModel])
     }
 
-    private var sections = [Section]()
+    private var sections = [Sections]()
     
     var controller: UIViewController
     var tableView: UITableView
@@ -94,12 +94,12 @@ class UserFriendsViewModel: TableViewModel {
         return cell
     }
     
-    func insert(models: [Section]) {
+    func insert(models: [Sections]) {
         sections = models
         tableView.reloadData()
     }
     
-    func update(models: [Section]) {
+    func update(models: [Sections]) {
         
     }
     

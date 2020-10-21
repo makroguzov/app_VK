@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TableViewModel {
-    associatedtype Section
+    associatedtype Sections
     
     var tableView: UITableView { get }
     var controller: UIViewController { get }
@@ -20,8 +20,8 @@ protocol TableViewModel {
     
     func cellForRowAt(indexPath: IndexPath) -> UITableViewCell
     
-    func insert(models: [Section])
-    func update(models: [Section])
+    func insert(models: [Sections])
+    func update(models: [Sections])
     func delete(models at: [IndexPath])
     
 }

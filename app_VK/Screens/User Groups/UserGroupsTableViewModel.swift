@@ -8,8 +8,8 @@
 import UIKit
 
 class UserGroupsTableViewModel: TableViewModel {
-    
-    enum Section {
+        
+    enum Sections {
         case events([GroupsInvitationCellModel])
         case friends([UserGroupCellModel])
     }
@@ -22,7 +22,7 @@ class UserGroupsTableViewModel: TableViewModel {
     private var events = [GroupsInvitationCellModel]()
     private var friends = [UserGroupCellModel]()
     
-    private var sections = [Section]()
+    private var sections = [SectionID: Sections]()
     
     required init(_ tableView: UITableView, controller: UIViewController) {
         self.tableView = tableView
@@ -32,11 +32,14 @@ class UserGroupsTableViewModel: TableViewModel {
     }
         
     func numberOfSections() -> Int {
-        return 2
+        return sections.count
     }
     
     func numberOfRowsInSection(section: SectionID) -> Int {
-        let section = sections[section]
+        guard let section = sections[section] else {
+            printError(in: #function, error: "Unknown section.")
+            return 0
+        }
         
         switch section {
         case .events(let rows):
@@ -47,7 +50,10 @@ class UserGroupsTableViewModel: TableViewModel {
     }
     
     func cellForRowAt(indexPath: IndexPath) -> UITableViewCell {
-        let section = sections[indexPath.section]
+        guard let section = sections[indexPath.section] else {
+            printError(in: #function, error: "Unknown error.")
+            return UITableViewCell()
+        }
         
         switch section {
         case .events(let rows):
@@ -67,20 +73,20 @@ class UserGroupsTableViewModel: TableViewModel {
         }
     }
     
-    func insert(models: [Section]) {
+    func insert(models: [Sections]) {
         for section in models {
             switch section {
             case .events:
-                sections.insert(section, at: 0)
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                sections[0] = section
             case .friends:
-                sections.insert(section, at: 1)
-                tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+                sections[1] = section
             }
         }
+        
+        tableView.reloadData()
     }
     
-    func update(models: [Section]) {
+    func update(models: [Sections]) {
 
     }
     
