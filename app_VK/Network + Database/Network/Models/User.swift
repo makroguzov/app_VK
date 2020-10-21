@@ -18,6 +18,7 @@ class User: Codable {
         case photo50 = "photo_50"
         case photo100 = "photo_100"
         case photo200 = "photo_200"
+        case userId = "user_id"
     }
     
     let id: Int
@@ -32,7 +33,7 @@ class User: Codable {
     
     let about: String?
     let activities: String?
-    let bdate: String? //Возвращается в формате D.M.YYYY или D.M (если год рождения скрыт)
+    let bdate: Date? //Возвращается в формате D.M.YYYY или D.M (если год рождения скрыт)
     let city: City?
     
     let photo50: String?
@@ -42,7 +43,13 @@ class User: Codable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingCeys.self)
         
-        id = try container.decode(Int.self, forKey: .id)
+        if let id = try? container.decode(Int.self, forKey: .id) {
+            self.id = id
+        } else if let id = try? container.decode(Int.self, forKey: .userId) {
+            self.id = id
+        } else {
+            self.id = -1
+        }
         
         firstName = try container.decode(String.self, forKey: .firstName)
         lastName = try container.decode(String.self, forKey: .lastName)
@@ -54,7 +61,16 @@ class User: Codable {
         
         about = try? container.decode(String.self, forKey: .about)
         activities = try? container.decode(String.self, forKey: .activities)
-        bdate = try? container.decode(String.self, forKey: .bdate)
+        
+        
+        if let bdate = try? container.decode(String.self, forKey: .bdate) {
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = bdate.split(separator: ".").count > 2 ? "D.M.YYYY" : "D.M"
+            self.bdate = dateFormater.date(from: bdate)
+        } else {
+            bdate = nil
+        }
+        
         city = try? container.decode(City.self, forKey: .city)
         
         photo50 = try? container.decode(String.self, forKey: .photo50)
