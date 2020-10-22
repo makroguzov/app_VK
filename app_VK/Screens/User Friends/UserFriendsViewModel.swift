@@ -15,7 +15,7 @@ class UserFriendsViewModel: TableViewModel {
         case birthdays([UserFriendCellModel])
         case friends([UserFriendCellModel])
     }
-
+    
     private var sections = [Sections]()
     
     var controller: UIViewController

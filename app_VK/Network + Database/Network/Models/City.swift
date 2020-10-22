@@ -7,7 +7,7 @@
 
 import Foundation
 
-class City: Codable {
+struct City: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, title

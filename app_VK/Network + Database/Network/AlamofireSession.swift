@@ -22,9 +22,9 @@ class AlamofireSession {
     let group = DispatchGroup()
     
     func getResponse(with params: VKRequestParametrs, complition: @escaping (_ response: JSON) -> Void) {
-        session.request(params.getBaseUrl() + params.getPath(),
+        session.request(params.url,
                         method: .get,
-                        parameters: params.getParams()).responseJSON(queue: .global(qos: .userInitiated)) { [weak self] response in
+                        parameters: params.params).responseJSON(queue: .global(qos: .userInitiated)) { [weak self] response in
                             
                             switch response.result {
                             case let .success(json):

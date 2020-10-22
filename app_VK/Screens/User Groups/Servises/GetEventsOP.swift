@@ -17,9 +17,9 @@ class GetEventsOP: AsyncOperation {
     var profiles: [JSON]?
     
     init(param: VKRequestParametrs) {
-        request = GetEventsOP.session.request(param.getBaseUrl() + param.getPath(),
+        request = GetEventsOP.session.request(param.url,
                                   method: .get,
-                                  parameters: param.getParams()
+                                  parameters: param.params
         )
     }
     
@@ -57,11 +57,11 @@ class GetEventsOP: AsyncOperation {
                 self?.groups = groups
                 self?.profiles = profiles
                                 
-                #if DEBUG
-                print("Load Events by GetEventsOP: ", self?.events ?? "nil")
-                print("Load Profiles by GetEventsOP: ", self?.profiles ?? "nil")
-                print("Load Groups by GetEventsOP: ", self?.groups ?? "nil")
-                #endif
+//                #if DEBUG
+//                print("Load Events by GetEventsOP: ", self?.events ?? "nil")
+//                print("Load Profiles by GetEventsOP: ", self?.profiles ?? "nil")
+//                print("Load Groups by GetEventsOP: ", self?.groups ?? "nil")
+//                #endif
 
             case let .failure(error):
                 self?.printError(in: #function, error: error.localizedDescription)

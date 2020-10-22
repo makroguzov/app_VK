@@ -10,10 +10,12 @@ import UIKit
 class NewsFooterTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsFooterCell"
+    static let nibName = "NewsFooterTableViewCell"
+    static let height: CGFloat = 30
     
     @IBOutlet private weak var likeButton: UIButton! {
         didSet {
-            likeButton.setImage(UIImage(systemName: ""), for: <#T##UIControl.State#>)
+            likeButton.setImage(UIImage(systemName: ""), for: .normal)
         }
     }
     @IBOutlet private weak var likeLabel: UILabel!

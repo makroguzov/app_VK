@@ -10,6 +10,7 @@ import UIKit
 class NewsTextTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsTextCell"
+    static let nibName = "NewsTextTableViewCell"
     static let height: CGFloat = 60
     
     var expandAction: ((UIButton) -> Void)?

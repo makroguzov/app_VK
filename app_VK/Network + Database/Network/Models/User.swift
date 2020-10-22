@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User: Codable {
+struct User: Codable {
     
     enum CodingCeys: String, CodingKey {
         case id, deactivated, about, activities, bdate, city
@@ -40,7 +40,7 @@ class User: Codable {
     let photo100: String?
     let photo200: String?
     
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingCeys.self)
         
         if let id = try? container.decode(Int.self, forKey: .id) {

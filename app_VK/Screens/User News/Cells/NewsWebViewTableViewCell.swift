@@ -11,6 +11,7 @@ import WebKit
 class NewsWebViewTableViewCell: UITableViewCell {
  
     static let reuseIdentifier = "NewsWebViewCell"
+    static let nibName = "NewsWebViewTableViewCell"
  
     @IBOutlet private weak var webView: WKWebView!
     

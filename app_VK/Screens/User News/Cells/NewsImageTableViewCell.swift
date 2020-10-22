@@ -11,6 +11,8 @@ import SDWebImage
 class NewsImageTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsImageCell"
+    static let nibName = "NewsImageTableViewCell"
+    
     
     @IBOutlet private weak var postImageView: UIImageView!
     

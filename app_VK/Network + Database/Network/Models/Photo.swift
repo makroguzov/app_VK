@@ -32,3 +32,15 @@ struct Photo: Codable {
     
     var sizes: [Size]
 }
+
+extension Photo {
+    static var empty: Photo {
+        return Photo(id: 0,
+                     albumId: 0,
+                     ownerId: 0,
+                     text: "",
+                     date: "",
+                     sizes: []
+        )
+    }
+}

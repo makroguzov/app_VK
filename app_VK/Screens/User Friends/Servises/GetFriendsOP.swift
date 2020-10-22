@@ -52,11 +52,11 @@ class GetFriendsOP: AsyncOperation {
             self.birthdays = self.getBirthdays()
             self.state = .finished
             
-            #if DEBUG
-            print("Load 'birthdays' from GetFriendsOP: ", self.birthdays)
-            print("Load 'friends' from GetFriendsOP: ", self.friends)
-            print("Load 'impFriends' from GetFriendsOP: ", self.impFriends)
-            #endif
+//            #if DEBUG
+//            print("Load 'birthdays' from GetFriendsOP: ", self.birthdays)
+//            print("Load 'friends' from GetFriendsOP: ", self.friends)
+//            print("Load 'impFriends' from GetFriendsOP: ", self.impFriends)
+//            #endif
         }
     }
     

@@ -72,10 +72,14 @@ class AsyncOperation: Operation {
         state = .finished
     }
     
+    func printError(in file: String,at function: String, error: String) {
+        print("Error in class: \(file) at function: \(function). \(error)")
+    }
+
     static func getRequest(with params: VKRequestParametrs) -> DataRequest {
-        return AlamofireSession.shared.session.request(params.getBaseUrl(),
+        return AlamofireSession.shared.session.request(params.url,
                                                        method: .get,
-                                                       parameters: params.getParams())
+                                                       parameters: params.params)
     }
     
 }

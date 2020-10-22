@@ -11,7 +11,7 @@ struct NewsHeaderTableViewCellModel {
     
     let creatorImage: String
     let nameLable: String
-    let subtitleLable: String
+    let newsDate: String
     
 }
 
@@ -19,14 +19,14 @@ extension NewsHeaderTableViewCellModel {
     static var emptyState: NewsHeaderTableViewCellModel {
         return NewsHeaderTableViewCellModel(creatorImage: "",
                                             nameLable: "",
-                                            subtitleLable: "")
+                                            newsDate: "")
     }
 }
 
 extension NewsHeaderTableViewCellModel {
-    static func setUp(for user: User) -> NewsHeaderTableViewCellModel {
-        return NewsHeaderTableViewCellModel(creatorImage: user.photo100 ?? "",
-                                            nameLable: "\(user.firstName) \(user.lastName)",
-                                            subtitleLable: user.bdate?.description ?? "")
+    static func setUp(for creator: Creator, postDate: String) -> NewsHeaderTableViewCellModel {
+        return NewsHeaderTableViewCellModel(creatorImage: creator.image,
+                                            nameLable: creator.name,
+                                            newsDate: postDate)
     }
 }

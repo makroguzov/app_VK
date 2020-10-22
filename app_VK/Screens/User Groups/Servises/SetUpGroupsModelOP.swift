@@ -55,7 +55,7 @@ class SetUpGroupsModelOP: Operation {
                     models.append(.forEvent(event: event, invitor: creator))
                 }
                 
-                print(models)
+                print("A;SLIFJwiefj;iwFJ;wiefh;lasejfhalefi")
                 viewModel?.insert(models: [.events(models)])
             }
         }

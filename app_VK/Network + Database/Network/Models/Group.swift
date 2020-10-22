@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Group: Codable {
+struct Group: Codable {
     
     enum Errors {
         case DecodeError(String)
@@ -46,7 +46,7 @@ class Group: Codable {
     let photo100: String
     let photo200: String
     
-    required init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decode(Int.self, forKey: .id)

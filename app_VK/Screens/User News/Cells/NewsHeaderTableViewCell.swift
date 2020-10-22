@@ -11,6 +11,7 @@ import SDWebImage
 class NewsHeaderTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsHeaderCell"
+    static let nibName = "NewsHeaderTableViewCell"
     static let height: CGFloat = 70
 
     @IBOutlet private weak var creatorImageView: UIImageView!
@@ -26,7 +27,7 @@ class NewsHeaderTableViewCell: UITableViewCell {
     private func updateForModel() {
         creatorImageView.sd_setImage(with: URL(string: model.creatorImage), completed: nil)
         nameLable.text = model.nameLable
-        subtitleLable.text = model.subtitleLable
+        subtitleLable.text = model.newsDate
     }
     
     override func awakeFromNib() {

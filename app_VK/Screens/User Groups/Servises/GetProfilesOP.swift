@@ -28,6 +28,9 @@ class GetProfilesOP: AsyncOperation {
         requests = getRequests(for: profilesIds)
 
         getUsers()
+        
+        //TODO: переделать
+        state = .finished
     }
     
     private func getRequests(for profilesIds: [Int]) -> [DataRequest] {
@@ -36,9 +39,9 @@ class GetProfilesOP: AsyncOperation {
         for profilesId in profilesIds {
             let params = getParams(for: profilesId)
             
-            let request = GetProfilesOP.session.request(params.getBaseUrl() + params.getPath(),
+            let request = GetProfilesOP.session.request(params.url,
                                           method: .get,
-                                          parameters: params.getParams()
+                                          parameters: params.params
             )
             requests.append(request)
         }

@@ -27,9 +27,9 @@ class GetRequestsForFrOP: AsyncOperation {
             self.requestsForFr = self.parse(response)
             self.state = .finished
             
-            #if DEBUG
-            print("Load requestsForFr from GetRequestsForFrOP: ", self.requestsForFr)
-            #endif
+//            #if DEBUG
+//            print("Load requestsForFr from GetRequestsForFrOP: ", self.requestsForFr)
+//            #endif
         }
     }
     

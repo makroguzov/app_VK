@@ -13,38 +13,38 @@ import Alamofire
 class VKRequestParametrs {
 
     enum LoadDataType: String {
-        case friends = "/method/friends.get"
-        case newsfeed = "/method/newsfeed.get"
-        case invites = "/method/groups.getInvites"
-        case groups = "/method/groups.get"
-        case users = "/method/users.get"
-        case requestsForFriends = "/method/friends.getRequests"
+        case friends = "friends.get"
+        case newsfeed = "newsfeed.get"
+        case invites = "groups.getInvites"
+        case groups = "groups.get"
+        case users = "users.get"
+        case requestsForFriends = "friends.getRequests"
+        
+        var pathValue: String {
+            return "/method/" + self.rawValue
+        }
     }
 
     private let baseUrl: String = "https://api.vk.com"
+    private let versionAPI = "5.92"
+    private let defoltParms: Parameters
     private var path: LoadDataType
-    private var params: Parameters
     
-    private let defoltParms: Parameters = [
-        "access_token": Session.shared.token,
-        "v": 5.21
-    ]
+    var params: Parameters
+    var url: String {
+        return baseUrl + path.pathValue
+    }
     
     init(path: LoadDataType, params: Parameters) {
         self.path = path
+        
+        self.defoltParms = [
+        "access_token": Session.shared.token,
+        "v": versionAPI
+        ]
+        
         self.params = defoltParms.merging(params) { (defoltParms, _) in defoltParms }
     }
         
-    func getBaseUrl() -> String {
-        return baseUrl
-    }
-
-    func getPath() -> String {
-        return path.rawValue
-    }
-        
-    func getParams() -> Parameters {
-        return params
-    }
 }
 

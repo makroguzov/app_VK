@@ -54,24 +54,39 @@ class UserGroupsDataLoader {
         
         let eventsParams = getInvitationsParametrs()
         let getEventsOP = GetEventsOP(param: eventsParams)
+        getEventsOP.completionBlock = {
+            print("getEventsOP")
+        }
         queue.addOperation(getEventsOP)
         
         let parseEventsOP = ParseEventsOP()
         parseEventsOP.addDependency(getEventsOP)
+        parseEventsOP.completionBlock = {
+            print("parseEventsOP")
+        }
         queue.addOperation(parseEventsOP)
         
         let getProfiles = GetProfilesOP()
         getProfiles.addDependency(parseEventsOP)
+        getProfiles.completionBlock = {
+            print("getProfiles")
+        }
         queue.addOperation(getProfiles)
 
         
         
         let groupsParams = getGroupsParametrs()
         let getGroupsOP = GetGroupsOP(param: groupsParams)
+        getGroupsOP.completionBlock = {
+            print("getGroupsOP")
+        }
         queue.addOperation(getGroupsOP)
         
         let parseGroupsOP = ParseGroupsOP()
         parseGroupsOP.addDependency(getGroupsOP)
+        parseGroupsOP.completionBlock = {
+            print("parseGroupsOP")
+        }
         queue.addOperation(parseGroupsOP)
         
         
@@ -79,10 +94,10 @@ class UserGroupsDataLoader {
         let setUpViewModelOP = SetUpGroupsModelOP(viewModel: viewModel)
         setUpViewModelOP.addDependency(parseGroupsOP)
         setUpViewModelOP.addDependency(getProfiles)
-        
         setUpViewModelOP.completionBlock = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.hud.dismiss(animated: true)
+                print("setUpViewModelOP")
             }
         }
 

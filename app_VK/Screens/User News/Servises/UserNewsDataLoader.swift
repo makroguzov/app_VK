@@ -20,6 +20,41 @@ class UserNewsDataLoader {
     }
     
     func loadData() {
+        hud.show(in: viewModel.controller.view)
         
+        
+        let queue = OperationQueue()
+        
+        let getNewsOP = GetNewsOP(startFrom: nextFrom)
+        getNewsOP.completionBlock = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            guard let nextFrom = getNewsOP.news?.nextFrom else {
+                return
+            }
+            
+            self.nextFrom = nextFrom
+        }
+        queue.addOperation(getNewsOP)
+        
+        
+        let parseNewsOP = ParseNewsOP()
+        parseNewsOP.addDependency(getNewsOP)
+        parseNewsOP.completionBlock = {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.viewModel.insert(models: parseNewsOP.models)
+                self.hud.dismiss(animated: true)
+            }
+        }
+        queue.addOperation(parseNewsOP)
+    }
+    private func printError(at function: String, error: String) {
+        print("Error in class: UserNewsDataLoader at function: \(function). \(error)")
     }
 }
