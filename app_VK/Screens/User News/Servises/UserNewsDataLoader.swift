@@ -13,7 +13,7 @@ class UserNewsDataLoader {
     private var hud = JGProgressHUD(style: .dark)
     private var viewModel: UserNewsViewModel
     
-    private var nextFrom: Int = 0
+    private var nextFrom: String = ""
     
     init(viewModel: UserNewsViewModel) {
         self.viewModel = viewModel

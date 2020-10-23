@@ -48,24 +48,29 @@ struct Group: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(Int.self, forKey: .id)
-        type = try container.decode(String.self, forKey: .type)
-  
-        name = try container.decode(String.self, forKey: .name)
-        screenName = try container.decode(String.self, forKey: .screenName)
-                                          
+
         deactivated = try? container.decode(String.self, forKey: .deactivated)
         invitedBy = try? container.decode(Int.self, forKey: .invitedBy)
         adminLevel = try? container.decode(Int.self, forKey: .adminLevel)
 
-        isClosed = try container.decode(Int.self, forKey: .isClosed)
-        isAdmin = try container.decode(Int.self, forKey: .isAdmin)
-        isMember = try container.decode(Int.self, forKey: .isMember)
-        isAdvertiser = try container.decode(Int.self, forKey: .isAdvertiser)
+        do {
+            id = try container.decode(Int.self, forKey: .id)
+            type = try container.decode(String.self, forKey: .type)
+      
+            name = try container.decode(String.self, forKey: .name)
+            screenName = try container.decode(String.self, forKey: .screenName)
+                                              
 
-        photo50 = try container.decode(String.self, forKey: .photo50)
-        photo100 = try container.decode(String.self, forKey: .photo100)
-        photo200 = try container.decode(String.self, forKey: .photo200)
+            isClosed = try container.decode(Int.self, forKey: .isClosed)
+            isAdmin = try container.decode(Int.self, forKey: .isAdmin)
+            isMember = try container.decode(Int.self, forKey: .isMember)
+            isAdvertiser = try container.decode(Int.self, forKey: .isAdvertiser)
+
+            photo50 = try container.decode(String.self, forKey: .photo50)
+            photo100 = try container.decode(String.self, forKey: .photo100)
+            photo200 = try container.decode(String.self, forKey: .photo200)
+        } catch {
+            throw error
+        }
     }
 }

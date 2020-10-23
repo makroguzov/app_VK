@@ -67,16 +67,10 @@ struct Post: Codable {
         } catch {
             throw DecodingError.dataCorrupted(
                 DecodingError.Context(codingPath: [CodingKeys.date],
-                                      debugDescription: "Problems with decode")
+                                      debugDescription: "Problems with decode in \(#file)")
             )
         }
-            
-//        if let date = try? container.decode(Double.self, forKey: .date) {
-//            self.date = Date(timeIntervalSince1970: date).timeAgo(numericDates: false)
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode date.")
-//        }
-        
+                    
         do {
             text = try container.decode(String.self, forKey: .text)
             
@@ -91,76 +85,49 @@ struct Post: Codable {
                                                    CodingKeys.likes,
                                                    CodingKeys.reposts,
                                                    CodingKeys.views],
-                                      debugDescription: "Problems with decode")
+                                      debugDescription: "Problems with decode in \(#file)")
             )
         }
+                
         
-//        if let text = try? container.decode(String.self, forKey: .text) {
-//            self.text = text
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode text.")
-//        }
-//
-//
-//        if let comments = try? container.decode(Comment.self, forKey: .comments) {
-//            self.comments = comments
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode comments.")
-//        }
-//
-//        if let likes = try? container.decode(Like.self, forKey: .likes) {
-//            self.likes = likes
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode likes.")
-//        }
-//
-//        if let reposts = try? container.decode(Repost.self, forKey: .reposts) {
-//            self.reposts = reposts
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode reposts.")
-//        }
-        
-//        if let views = try? container.decode(Views.self, forKey: .views) {
-//            self.views = views
-//        } else {
-//            print("Error in class: Post at function:\(#function). Problems with decode views.")
-//        }
-    
-   
-        
-        if  let type = try? container.decode(String.self, forKey: .type) {
-            self.type = PostType.init(rawValue: type) ?? .none
-        } else {
-            print("Error in class: Post at function:\(#function). Problems with decode type.")
+        do {
+            type = try PostType(rawValue: container.decode(String.self, forKey: .type)) ?? .none
+        } catch {
+            throw DecodingError.dataCorrupted(
+                DecodingError.Context(codingPath: [CodingKeys.type],
+                                      debugDescription: "Problems with decode in \(#file)"
+                )
+            )
         }
-        
-        switch type {
-        case .photo:
-            if let photos = try? container.decode([Photo].self, forKey: .photos) {
-                self.photos = photos
-            } else {
-                print("Error in class: Post at function:\(#function). Problems with decode photos.")
-            }
-        case .post:
-            do {
+                
+        do {
+            switch type {
+            case .photo:
+                photos = try container.decode([Photo].self, forKey: .photos)
+            case .post:
                 attachments = try container.decode([Attachment].self, forKey: .attachments)
-            } catch DecodingError.dataCorrupted(let context) {
-                throw DecodingError.dataCorrupted(context)
+            case .friend:
+                return
+            case .note:
+                return
+            case .audio:
+                return
+            case .video:
+                return
+            case .photoTag:
+                return
+            case .wallPhoto:
+                return
+            case .none:
+                print("Error in class: Post at function:\(#function). Undefind Post type.")
             }
-        case .friend:
-            return
-        case .note:
-            return
-        case .audio:
-            return
-        case .video:
-            return
-        case .photoTag:
-            return
-        case .wallPhoto:
-            return
-        case .none:
-            print("Error in class: Post at function:\(#function). Undefind Post type.")
+        } catch {
+            throw error
         }
+        
+        
+//        catch DecodingError.dataCorrupted(let context) {
+//            throw DecodingError.dataCorrupted(context)
+//        }
     }
 }

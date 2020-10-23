@@ -20,16 +20,14 @@ struct Comment: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        if let count = try? container.decode(Int.self, forKey: .count) {
-            self.count = count
-        } else {
-            print("Error in class: Comment at function:\(#function). Problems with decode count.")
-        }
-        
-        if let canPost = try? container.decode(Int.self, forKey: .canPost) {
-            self.canPost = canPost
-        } else {
-            print("Error in class: Comment at function:\(#function). Problems with decode canPost.")
+        do {
+            count = try container.decode(Int.self, forKey: .count)
+            canPost = try container.decode(Int.self, forKey: .canPost)
+        } catch {
+            throw DecodingError.dataCorrupted(
+                DecodingError.Context(codingPath: [],
+                                      debugDescription: "Problems with decode in \(#file)")
+            )
         }
     }
     

@@ -11,9 +11,9 @@ class GetNewsOP: AsyncOperation {
     
     var news: News?
     
-    private var startFrom: Int
+    private var startFrom: String
     
-    init(startFrom: Int) {
+    init(startFrom: String) {
         self.startFrom = startFrom
     }
     
@@ -23,6 +23,8 @@ class GetNewsOP: AsyncOperation {
             guard let self = self else {
                 return
             }
+            
+            //print(response)
             
             guard let data = try? JSONSerialization.data(withJSONObject: response, options: .withoutEscapingSlashes) else {
                 self.printError(in: #file, at: #function, error: "Problems with transform to data.")

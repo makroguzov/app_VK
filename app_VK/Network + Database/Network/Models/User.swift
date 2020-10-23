@@ -21,7 +21,7 @@ struct User: Codable {
         case userId = "user_id"
     }
     
-    let id: Int
+    var id: Int = -1
     
     let firstName: String
     let lastName: String
@@ -47,12 +47,15 @@ struct User: Codable {
             self.id = id
         } else if let id = try? container.decode(Int.self, forKey: .userId) {
             self.id = id
-        } else {
-            self.id = -1
         }
         
-        firstName = try container.decode(String.self, forKey: .firstName)
-        lastName = try container.decode(String.self, forKey: .lastName)
+        do {
+            firstName = try container.decode(String.self, forKey: .firstName)
+            lastName = try container.decode(String.self, forKey: .lastName)
+        } catch {
+            throw error
+        }
+        
         
         deactivated = try? container.decode(String.self, forKey: .deactivated)
         
