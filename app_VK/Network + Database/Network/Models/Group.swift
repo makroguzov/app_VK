@@ -69,8 +69,22 @@ struct Group: Codable {
             photo50 = try container.decode(String.self, forKey: .photo50)
             photo100 = try container.decode(String.self, forKey: .photo100)
             photo200 = try container.decode(String.self, forKey: .photo200)
-        } catch {
-            throw error
+        } catch DecodingError.dataCorrupted(let context) {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: context.codingPath,
+                                  debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.keyNotFound(keys, context) {
+            throw DecodingError.keyNotFound(keys, DecodingError.Context(codingPath: context.codingPath,
+                                                                        debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.typeMismatch(type, context) {
+            throw DecodingError.typeMismatch(type, .init(codingPath: context.codingPath,
+                                                         debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.valueNotFound(type, context) {
+            throw DecodingError.valueNotFound(type, .init(codingPath: context.codingPath,
+                                                          debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
         }
     }
 }

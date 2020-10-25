@@ -5,13 +5,17 @@
 //  Created by Валерий Макрогузов on 21.10.2020.
 //
 
-import Foundation
+import UIKit
 
 struct NewsHeaderTableViewCellModel {
     
     let creatorImage: String
     let nameLable: String
     let newsDate: String
+    
+    var rowHeight: CGFloat {
+        return NewsHeaderTableViewCell.height
+    }
     
 }
 

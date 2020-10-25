@@ -32,6 +32,8 @@ class UserNewsViewController: UITableViewController {
         tableView.register(UINib(nibName: NewsSeparatorTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: NewsSeparatorTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: NewsDefaultTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: NewsDefaultTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: NewsWebViewTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: NewsWebViewTableViewCell.reuseIdentifier)
+    
+        tableView.separatorStyle = .none
     }
     
     private func loadData() {
@@ -63,28 +65,34 @@ extension UserNewsViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = viewModel.getRow(at: indexPath)
-        
         switch row {
-        case .NewsHeaderTableViewCell:
-            return NewsHeaderTableViewCell.height
-        case .NewsTextTableViewCell:
-            return NewsTextTableViewCell.height
-        case .NewsImageTableViewCell:
-            return 100
-        case .NewsFooterTableViewCell:
-            return NewsFooterTableViewCell.height
+        case .NewsHeaderTableViewCell(let model):
+            return model.rowHeight
+        case .NewsTextTableViewCell(let model):
+            return model.rowHeight
+        case .NewsImageTableViewCell(let model):
+            return model.rowHeight
+        case .NewsFooterTableViewCell(let model):
+            return model.rowHeight
         case .NewsSeparatorTableViewCell:
-            return NewsSeparatorTableViewCell.height
+            return 20
         case .NewsDefaultTableViewCell:
             return 100
         case .NewsWebViewTableViewCell:
             return 100
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return NewsSeparatorTableViewCell.height
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsSeparatorTableViewCell.reuseIdentifier) as? NewsSeparatorTableViewCell else {
+            fatalError()
+        }
+        
+        return cell
     }
     
 }

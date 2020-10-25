@@ -5,16 +5,17 @@
 //  Created by Валерий Макрогузов on 21.10.2020.
 //
 
-import Foundation
+import UIKit
 
 struct NewsImageTableViewCellModel {
     
-    let image: String
-    
+    let image: Photo
+    var rowHeight: CGFloat = 0
+
 }
 
 extension NewsImageTableViewCellModel {
     static var emptyState: NewsImageTableViewCellModel {
-        return NewsImageTableViewCellModel(image: "")
+        return NewsImageTableViewCellModel(image: .empty)
     }
 }

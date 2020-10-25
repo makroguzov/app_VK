@@ -11,7 +11,7 @@ class NewsSeparatorTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsSeparatorCell"
     static let nibName = "NewsSeparatorTableViewCell"
-    static let height: CGFloat = 2
+    static let height: CGFloat = 10
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -7,65 +7,45 @@
 
 import Foundation
 
-//struct Attachment: Codable {
-//
-//    private enum Codingkeys: String, CodingKey {
-//        case type
-//    }
-//
-//    fileprivate enum AttachmentType: String, CodingKey {
-//        case photo, video, audio, doc ,graffiti, link, note, poll, page, album, event
-//        case photosList = "photos_list"
-//    }
+enum Attachment: Codable {
     
-    enum Attachment: Codable {
+    case photo(Photo)
+    case video(Video)
+    case audio
+    case doc
+    case graffiti
+    case link(Link)
+    case note
+    case poll
+    case page
+    case album
+    case event
+    case photosList
+    
+    case none(String)
+    
+    enum CodingKeys: String, CodingKey {
+        case photo, video, audio, doc ,graffiti, link, note, poll, page, album, event
+        case photosList = "photos_list"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        case photo(Photo)
-        case video(Video)
-        case audio
-        case doc
-        case graffiti
-        case link(Link)
-        case note
-        case poll
-        case page
-        case album
-        case event
-        case photosList
-        
-        case none
-
-        enum CodingKeys: String, CodingKey {
-            case photo, video, audio, doc ,graffiti, link, note, poll, page, album, event
-            case photosList = "photos_list"
-        }
-
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
+        do {
             if container.contains(.photo) {
-                do {
-                    self = .photo(try container.decode(Photo.self, forKey: .photo))
-                    return
-                } catch {
-                    throw error
-                }
+                try self = .photo(container.decode(Photo.self, forKey: .photo))
+                return
             }
-
+            
             if container.contains(.video) {
-                do {
-                    self = .video(try container.decode(Video.self, forKey: .video))
-                } catch {
-                    throw error
-                }
+                try self = .video(container.decode(Video.self, forKey: .video))
+                return
             }
-
+            
             if container.contains(.link) {
-                do {
-                    self = .link(try container.decode(Link.self, forKey: .link))
-                } catch {
-                    throw error
-                }
+                try self = .link(container.decode(Link.self, forKey: .link))
+                return
             }
             
             if container.contains(.album) {
@@ -103,64 +83,29 @@ import Foundation
             if container.contains(.poll) {
                 print(CodingKeys.poll)
             }
-
-            self = .none
-            return
             
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(codingPath: [],
-                                      debugDescription: "Problems with decoding Attachments in \(#file)")
+        } catch DecodingError.dataCorrupted(let context) {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: context.codingPath,
+                                  debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.keyNotFound(keys, context) {
+            throw DecodingError.keyNotFound(keys, DecodingError.Context(codingPath: context.codingPath,
+                                                                        debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.typeMismatch(type, context) {
+            throw DecodingError.typeMismatch(type, .init(codingPath: context.codingPath,
+                                                         debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.valueNotFound(type, context) {
+            throw DecodingError.valueNotFound(type, .init(codingPath: context.codingPath,
+                                                          debugDescription: "\(context.debugDescription) in file \(#file)")
             )
         }
-
-        func encode(to encoder: Encoder) throws {
-            return
-        }
+        
+        self = .none("Error")
     }
     
-//    var type: String
-//    var element: Attachment = .none
-//    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: Codingkeys.self)
-//        
-//        self.type = try container.decode(String.self, forKey: .type)
-//        
-//        let typesContainer = try decoder.container(keyedBy: AttachmentType.self)
-//        let type = AttachmentType(rawValue: self.type)
-//        
-//        do {
-//            switch type {
-//            case .photo:
-//                element = .photo(try typesContainer.decode(Photo.self, forKey: .photo))
-//            case .video:
-//                element = .video(try typesContainer.decode(Video.self, forKey: .video))
-//            case .audio:
-//                return
-//            case .doc:
-//                return
-//            case .graffiti:
-//                return
-//            case .link:
-//                element = .link(try typesContainer.decode(Link.self, forKey: .link))
-//            case .note:
-//                return
-//            case .poll:
-//                return
-//            case .page:
-//                return
-//            case .album:
-//                return
-//            case .event:
-//                return
-//            case .photosList:
-//                return
-//            case .none:
-//                print("Error")
-//                
-//            }
-//        } catch DecodingError.dataCorrupted(let context) {
-//            throw DecodingError.dataCorrupted(context)
-//        }
-//    }
-//}
+    func encode(to encoder: Encoder) throws {
+        return
+    }
+}

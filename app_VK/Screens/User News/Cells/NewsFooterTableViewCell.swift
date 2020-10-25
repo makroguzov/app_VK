@@ -11,11 +11,11 @@ class NewsFooterTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "NewsFooterCell"
     static let nibName = "NewsFooterTableViewCell"
-    static let height: CGFloat = 30
+    static let height: CGFloat = 40
     
     @IBOutlet private weak var likeButton: UIButton! {
         didSet {
-            likeButton.setImage(UIImage(systemName: ""), for: .normal)
+            likeButton.setImage(UIImage(systemName: ""), for: .selected)
         }
     }
     @IBOutlet private weak var likeLabel: UILabel!
@@ -26,7 +26,11 @@ class NewsFooterTableViewCell: UITableViewCell {
     
     
     @IBOutlet private weak var commentLabelWidth: NSLayoutConstraint!
-    @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var shareButton: UIButton! {
+        didSet {
+            shareButton.setImage(UIImage(systemName: ""), for: .selected)
+        }
+    }
     @IBOutlet private weak var shareLabel: UILabel!
     
     @IBOutlet private weak var iconCommentWidth: NSLayoutConstraint!
@@ -43,11 +47,44 @@ class NewsFooterTableViewCell: UITableViewCell {
     }
     
     private func updateForModel() {
+        updateLikes()
+        updateComments()
+        updateReposts()
+        updateViews()
+    }
+    
+    private func updateLikes() {
+        likeLabel.text = String(model.likesCount)
         
+        if model.userLikes == 1  {
+            likeButton.isSelected.toggle()
+        }
+    }
+    
+    private func updateComments() {
+        commentLabel.text = String(model.commentsCount)
+        
+        if model.canComment == 0 {
+            commentButton.isEnabled = false
+        }
+    }
+    
+    private func updateReposts() {
+        shareLabel.text = String(model.repostsCount)
+        
+        if model.userReposted == 1 {
+            shareButton.isSelected.toggle()
+        }
+    }
+    
+    private func updateViews() {
+        viewsLabel.text = String(model.viewsCount)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,26 +92,15 @@ class NewsFooterTableViewCell: UITableViewCell {
     }
     
     @IBAction func tapLikeButton(_ sender: UIButton) {
-        delegateButton?.didTapCompleteButton(indexPath: indexPathCell!)
+        let likesCount = Int(likeLabel.text ?? "") ?? 0
         
-        if likeButton.currentImage == UIImage(named: "HeartWhite") {
-            likeButton.setImage(UIImage(named: "Heart"), for: .normal)
-            likeLabel.textColor = UIColor.vkRed
-            
-            if let likesTest = Int(likeLabel.text!) {
-                if likesTest < 1000 {
-                    likeLabel.text = String(Int(likeLabel.text!)! + 1)
-                }
-            }
+        if likeButton.isSelected {
+            likeLabel.text = String(likesCount - 1)
         } else {
-            likeButton.setImage(UIImage(named: "HeartWhite"), for: .normal)
-            likeLabel.textColor = UIColor.vk_color
-            if let likesTest = Int(likeLabel.text!) {
-                if likesTest < 1000 {
-                    likeLabel.text = String(Int(likeLabel.text!)! - 1)
-                }
-            }
+            likeLabel.text = String(likesCount + 1)
         }
+        
+        likeButton.isSelected.toggle()
     }
     
 }

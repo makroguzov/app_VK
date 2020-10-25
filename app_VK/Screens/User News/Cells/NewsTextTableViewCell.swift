@@ -12,12 +12,14 @@ class NewsTextTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NewsTextCell"
     static let nibName = "NewsTextTableViewCell"
     static let height: CGFloat = 60
-    
-    var expandAction: ((UIButton) -> Void)?
+    static let textNonExpandHeight: CGFloat = 30
 
     @IBOutlet private weak var newsText: UILabel!
     @IBOutlet private weak var expandButton: UIButton!
     
+    
+    var expandAction: ((CGFloat) -> Void)?
+
     var model: NewsTextTableViewCellModel = .emptyState {
         didSet {
             updateForModel()
@@ -25,11 +27,27 @@ class NewsTextTableViewCell: UITableViewCell {
     }
     
     private func updateForModel() {
-        newsText.text = model.newsText
+        newsText.attributedText = model.attrString
+        newsText.isUserInteractionEnabled = true
+        
+        let rowHeight = getRowHeight(frame: frame)
+        
+        if rowHeight < model.rowHeight {
+            expandButton.isHidden = true
+        }
     }
+    
+    private func getRowHeight(frame: CGRect)-> CGFloat {
+        let size = model.attrString.boundingRect(with: CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        
+        return size.height
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,7 +55,12 @@ class NewsTextTableViewCell: UITableViewCell {
     }
 
     @IBAction func expand(_ sender: UIButton) {
-        expandAction?(sender)
+        if !expandButton.isSelected {
+            expandButton.isHidden = true
+            expandAction?(getRowHeight(frame: frame))
+        } else {
+            
+        }
     }
 
 }

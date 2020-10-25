@@ -8,7 +8,7 @@
 import UIKit
 
 class UserGroupsTableViewModel: TableViewModel {
-        
+            
     enum Sections {
         case events([GroupsInvitationCellModel])
         case friends([UserGroupCellModel])
@@ -86,10 +86,10 @@ class UserGroupsTableViewModel: TableViewModel {
         tableView.reloadData()
     }
     
-    func update(models: [Sections]) {
-
+    func update(with models: [Sections], at indexPath: [IndexPath]) {
+        
     }
-    
+
     func delete(models at: [IndexPath]) {
         
     }

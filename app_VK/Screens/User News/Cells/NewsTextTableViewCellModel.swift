@@ -5,16 +5,16 @@
 //  Created by Валерий Макрогузов on 21.10.2020.
 //
 
-import Foundation
+import UIKit
 
 struct NewsTextTableViewCellModel {
     
-    let newsText: String
-
+    let attrString: NSAttributedString
+    var rowHeight: CGFloat = NewsTextTableViewCell.textNonExpandHeight
 }
 
 extension NewsTextTableViewCellModel {
     static var emptyState: NewsTextTableViewCellModel {
-        return NewsTextTableViewCellModel(newsText: "")
+        return NewsTextTableViewCellModel(attrString: NSAttributedString(string: ""))
     }
 }

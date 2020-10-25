@@ -11,8 +11,9 @@ struct Link: Codable {
     
     let url: String
     let title: String
-    let caption: String?
     let description: String
+
+    let caption: String?
     let photo: Photo?
     
 }

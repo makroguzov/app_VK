@@ -14,15 +14,7 @@ struct Photo: Codable {
         case albumId = "album_id"
         case ownerId = "owner_id"
     }
-    
-    struct Size: Codable {
         
-        var url: String
-        var width: Int
-        var height: Int
-        
-    }
-    
     var id: Int
     var albumId: Int
     var ownerId: Int
@@ -41,25 +33,23 @@ struct Photo: Codable {
             ownerId = try container.decode(Int.self, forKey: .ownerId)
             text = try container.decode(String.self, forKey: .text)
             date = try container.decode(Double.self, forKey: .date)
-        } catch {
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(codingPath: [
-                                        CodingKeys.id,
-                                        CodingKeys.albumId,
-                                        CodingKeys.ownerId,
-                                        CodingKeys.text,
-                                        CodingKeys.date],
-                                      debugDescription: "Problems with decode in \(#file)")
-            )
-        }
- 
-        do {
+            
             sizes = try container.decode([Size].self, forKey: .sizes)
-        } catch {
-            throw DecodingError.dataCorrupted(
-                DecodingError.Context(codingPath: [
-                                        CodingKeys.sizes],
-                                       debugDescription: "Problems with decode in \(#file)")
+        } catch DecodingError.dataCorrupted(let context) {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: context.codingPath,
+                                  debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.keyNotFound(keys, context) {
+            throw DecodingError.keyNotFound(keys, DecodingError.Context(codingPath: context.codingPath,
+                                                                        debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.typeMismatch(type, context) {
+            throw DecodingError.typeMismatch(type, .init(codingPath: context.codingPath,
+                                                         debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.valueNotFound(type, context) {
+            throw DecodingError.valueNotFound(type, .init(codingPath: context.codingPath,
+                                                          debugDescription: "\(context.debugDescription) in file \(#file)")
             )
         }
     }

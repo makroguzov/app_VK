@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserFriendsViewModel: TableViewModel {
+class UserFriendsViewModel: TableViewModel {    
 
     enum Sections {
         case requestsForFriends([RequestForFrCellModel])
@@ -99,10 +99,10 @@ class UserFriendsViewModel: TableViewModel {
         tableView.reloadData()
     }
     
-    func update(models: [Sections]) {
+    func update(with models: [Sections], at indexPath: [IndexPath]) {
         
     }
-    
+
     func delete(models at: [IndexPath]) {
         
     }

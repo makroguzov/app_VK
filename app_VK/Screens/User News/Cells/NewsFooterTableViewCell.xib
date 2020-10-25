@@ -24,6 +24,9 @@
                             <constraint firstAttribute="width" secondItem="DLS-zC-tEY" secondAttribute="height" multiplier="1:1" id="vbm-IX-kkn"/>
                         </constraints>
                         <state key="normal" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="tapLikeButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NaP-Ag-6tE"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVq-0g-8gB">
                         <rect key="frame" x="35" y="5" width="40" height="20"/>

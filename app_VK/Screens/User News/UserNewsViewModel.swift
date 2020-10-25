@@ -24,13 +24,27 @@ class UserNewsViewModel: TableViewModel {
             case NewsDefaultTableViewCell
             case NewsWebViewTableViewCell
         }
-
+        
         case post([Row])
         
         var rows: [Row] {
             switch self {
             case .post(let rows):
                 return rows
+            }
+        }
+        
+        subscript(row: Int) -> Row {
+            get {
+                rows[row]
+            }
+            
+            set {
+                switch self {
+                case .post(var rows):
+                    rows[row] = newValue
+                    self = .post(rows)
+                }
             }
         }
     }
@@ -60,14 +74,29 @@ class UserNewsViewModel: TableViewModel {
     }
     
     func cellForRowAt(indexPath: IndexPath) -> UITableViewCell {
-        let row = sections[indexPath.section].rows[indexPath.row]
+        let row = sections[indexPath.section][indexPath.row]
         
         do {
             switch row {
             case .NewsHeaderTableViewCell(let model):
                 return try getNewsHeaderTableViewCell(for: model)
-            case .NewsTextTableViewCell(let model):
-                return try getNewsTextTableViewCell(for: model)
+            case .NewsTextTableViewCell(var model):
+                let cell = try getNewsTextTableViewCell(for: model)
+                
+                cell.expandAction = { [weak self] (height) in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    model.rowHeight = height
+                    
+                    var section = self.sections[indexPath.section]
+                    section[indexPath.row] = .NewsTextTableViewCell(model)
+                    self.update(with: [section], at: [indexPath])
+                }
+                
+                return cell
+
             case .NewsImageTableViewCell(let model):
                 return try getNewsImageTableViewCell(for: model)
             case .NewsFooterTableViewCell(let model):
@@ -84,6 +113,7 @@ class UserNewsViewModel: TableViewModel {
         } catch {
             printError(at: #function, error: "Unknown error.")
         }
+        
         return UITableViewCell()
     }
     
@@ -109,6 +139,10 @@ class UserNewsViewModel: TableViewModel {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsImageTableViewCell.reuseIdentifier) as? NewsImageTableViewCell else {
             throw Errors.ReuseError("NewsImageTableViewCell")
         }
+        
+        print(123)
+        print(model)
+        print(cell)
         
         cell.model = model
         return cell
@@ -156,10 +190,15 @@ class UserNewsViewModel: TableViewModel {
         tableView.reloadData()
     }
     
-    func update(models: [Sections]) {
-        
+    func update(with models: [Sections], at indexPaths: [IndexPath]) {
+        let updations = zip(models, indexPaths)
+        for (section, indexpath) in updations {
+            sections[indexpath.section] = section
+        }
+     
+        tableView.reloadRows(at: indexPaths, with: .automatic)
     }
-    
+
     func delete(models at: [IndexPath]) {
         
     }

@@ -23,9 +23,7 @@ class GetNewsOP: AsyncOperation {
             guard let self = self else {
                 return
             }
-            
-            //print(response)
-            
+   
             guard let data = try? JSONSerialization.data(withJSONObject: response, options: .withoutEscapingSlashes) else {
                 self.printError(in: #file, at: #function, error: "Problems with transform to data.")
                 return
@@ -37,19 +35,8 @@ class GetNewsOP: AsyncOperation {
                 self.news = try decoder.decode(News.self, from: data)
             } catch {
                 print("\(error.localizedDescription)")
-                
             }
-                
-//                DecodingError.dataCorrupted(let context){
-//                print("\(context.debugDescription) with keys: \(context.codingPath)")
-//            }
-            
-//            guard let news = try? decoder.decode(News.self, from: data) else {
-//                self?.printError(in: #file, at: #function, error: "Problems with decode data.")
-//                return
-//            }
-            
-            //self?.news = news
+
             self.state = .finished
         }
     }
@@ -59,7 +46,7 @@ class GetNewsOP: AsyncOperation {
                                   params: [
                                     "filters": "post,photo",
                                     "start_from": startFrom,
-                                    "count": 5,
+                                    "count": 1,
                                   ]
         )
     }

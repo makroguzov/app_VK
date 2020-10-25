@@ -21,7 +21,7 @@ protocol TableViewModel {
     func cellForRowAt(indexPath: IndexPath) -> UITableViewCell
     
     func insert(models: [Sections])
-    func update(models: [Sections])
+    func update(with models: [Sections], at indexPaths: [IndexPath])
     func delete(models at: [IndexPath])
     
 }
