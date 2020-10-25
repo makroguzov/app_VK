@@ -17,27 +17,29 @@ class NewsImageTableViewCell: UITableViewCell {
     
     var model: NewsImageTableViewCellModel = .emptyState {
         didSet {
-            print(model)
             updateForModel()
         }
     }
     
     private func updateForModel() {
-        var height: CGFloat = 200
-        var url: String = model.image.sizes.first?.size?.url ?? ""
+        var url: String = ""
 
-//        if !model.image.sizes.isEmpty {
-//            height = 200
-//            url = model.image.sizes.first?.size?.url ?? ""
-//        }
+        model.image.sizes.forEach { (sizeType) in
+            switch sizeType {
+            case .x(let size):
+                url = size.url
+            default:
+                break
+            }
+        }
         
-        
-        model.rowHeight = height
         postImageView.sd_setImage(with: URL(string: url), completed: nil)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

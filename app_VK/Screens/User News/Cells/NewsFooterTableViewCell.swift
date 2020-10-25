@@ -37,7 +37,6 @@ class NewsFooterTableViewCell: UITableViewCell {
     @IBOutlet private weak var iconViews: UIImageView!
     @IBOutlet private weak var viewsLabel: UILabel!
     
-    var delegateButton: CellForButtonsDelegate?
     var indexPathCell: IndexPath?
 
     var model: NewsFooterTableViewCellModel = .emptyState {

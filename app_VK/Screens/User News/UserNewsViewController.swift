@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol CellForButtonsDelegate {
-    func didTapCompleteButton(indexPath: IndexPath)
-}	
-
 class UserNewsViewController: UITableViewController {
     
     private var viewModel: UserNewsViewModel!
@@ -34,11 +30,26 @@ class UserNewsViewController: UITableViewController {
         tableView.register(UINib(nibName: NewsWebViewTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: NewsWebViewTableViewCell.reuseIdentifier)
     
         tableView.separatorStyle = .none
+        
+        tableView.prefetchDataSource = self
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Reloading...")
+        refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     private func loadData() {
         viewModel.dataLoader.loadData()
     }
+    
+    @objc private func refresh(_ sender: Any) {
+        viewModel.dataLoader.loadData { [weak self] in
+            self?.refreshControl?.endRefreshing()
+        }
+    }
+    
 }
 
 //MARK: UITableViewDataSource
@@ -97,4 +108,21 @@ extension UserNewsViewController {
     
 }
 
+//MARK: UITableViewDataSourcePrefetching
 
+extension UserNewsViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        print("perfetch rows at: \(indexPaths)")
+        
+        if indexPaths.contains(where: isLoadingCell(for:)) {
+            loadData()
+        }
+    }
+    
+    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.section == (viewModel.numberOfSections() - 5)
+    }
+
+}

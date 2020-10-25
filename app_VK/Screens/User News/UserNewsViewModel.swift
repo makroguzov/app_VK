@@ -140,10 +140,6 @@ class UserNewsViewModel: TableViewModel {
             throw Errors.ReuseError("NewsImageTableViewCell")
         }
         
-        print(123)
-        print(model)
-        print(cell)
-        
         cell.model = model
         return cell
     }

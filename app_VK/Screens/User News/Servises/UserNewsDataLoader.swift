@@ -19,7 +19,7 @@ class UserNewsDataLoader {
         self.viewModel = viewModel
     }
     
-    func loadData() {
+    func loadData(complition: (() -> Void)? = nil) {
         hud.show(in: viewModel.controller.view)
         
         
@@ -50,10 +50,12 @@ class UserNewsDataLoader {
                 
                 self.viewModel.insert(models: parseNewsOP.models)
                 self.hud.dismiss(animated: true)
+                complition?()
             }
         }
         queue.addOperation(parseNewsOP)
     }
+    
     private func printError(at function: String, error: String) {
         print("Error in class: UserNewsDataLoader at function: \(function). \(error)")
     }

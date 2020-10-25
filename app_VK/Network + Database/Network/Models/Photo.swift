@@ -22,7 +22,7 @@ struct Photo: Codable {
     var text: String
     var date: Double
     
-    var sizes: [Size]
+    var sizes: [SizeType] = []
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -34,7 +34,7 @@ struct Photo: Codable {
             text = try container.decode(String.self, forKey: .text)
             date = try container.decode(Double.self, forKey: .date)
             
-            sizes = try container.decode([Size].self, forKey: .sizes)
+            sizes = try container.decode([SizeType].self, forKey: .sizes)
         } catch DecodingError.dataCorrupted(let context) {
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: context.codingPath,
                                   debugDescription: "\(context.debugDescription) in file \(#file)")
@@ -54,7 +54,7 @@ struct Photo: Codable {
         }
     }
     
-    init(id: Int, albumId: Int, ownerId: Int, text: String, date: Double, sizes: [Size]) {
+    init(id: Int, albumId: Int, ownerId: Int, text: String, date: Double, sizes: [SizeType]) {
         self.id = id
         self.albumId = albumId
         self.ownerId = ownerId

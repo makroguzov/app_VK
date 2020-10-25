@@ -46,7 +46,7 @@ class GetNewsOP: AsyncOperation {
                                   params: [
                                     "filters": "post,photo",
                                     "start_from": startFrom,
-                                    "count": 1,
+                                    "count": 20,
                                   ]
         )
     }
