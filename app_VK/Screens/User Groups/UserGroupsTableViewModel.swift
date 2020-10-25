@@ -8,133 +8,88 @@
 import UIKit
 
 class UserGroupsTableViewModel: TableViewModel {
- 
-    private enum Section: Int {
-        case events = 0
-        case friends = 1
+            
+    enum Sections {
+        case events([GroupsInvitationCellModel])
+        case friends([UserGroupCellModel])
     }
     
     var loader = UserGroupsDataLoader()
+    
     var tableView: UITableView
-
+    var controller: UIViewController
     
     private var events = [GroupsInvitationCellModel]()
     private var friends = [UserGroupCellModel]()
     
+    private var sections = [SectionID: Sections]()
+    
     required init(_ tableView: UITableView, controller: UIViewController) {
         self.tableView = tableView
+        self.controller = controller
+        
         self.loader = UserGroupsDataLoader(viewModel: self, controller: controller)
     }
         
     func numberOfSections() -> Int {
-        return 2
+        return sections.count
     }
     
     func numberOfRowsInSection(section: SectionID) -> Int {
-        let section = Section(rawValue: section)
+        guard let section = sections[section] else {
+            printError(in: #function, error: "Unknown section.")
+            return 0
+        }
         
         switch section {
-        case .events:
-            return events.count
-        case .friends:
-            return friends.count
-        default:
-            return 0
+        case .events(let rows):
+            return rows.count
+        case .friends(let rows):
+            return rows.count
         }
     }
     
     func cellForRowAt(indexPath: IndexPath) -> UITableViewCell {
-        let section = Section(rawValue: indexPath.section)
+        guard let section = sections[indexPath.section] else {
+            printError(in: #function, error: "Unknown error.")
+            return UITableViewCell()
+        }
         
         switch section {
-        case .events:
+        case .events(let rows):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupsInvitationCell.identifier) as? GroupsInvitationCell else {
                 fatalError()
             }
             
-            cell.model = events[indexPath.row]
+            cell.model = rows[indexPath.row]
             return cell
-        case .friends:
+        case .friends(let rows):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: UserGroupCell.identifier) as? UserGroupCell else {
                 fatalError()
             }
             
-            cell.model = friends[indexPath.row]
+            cell.model = rows[indexPath.row]
             return cell
-        default:
-            fatalError()
-        }
-        
-    }
-    
-    func insert(models: [SectionID: Any]) {
-
-        for (sectionId, models) in models {
-            let section = Section(rawValue: sectionId)
-
-            switch section {
-            case .events:
-                guard let events = models as? [GroupsInvitationCellModel] else {
-                    printError(in: #function, error: "Cant setup viewModel with [GroupsInvitationCellModel], because of incorrect type.")
-                    return
-                }
-                
-                self.events = events
-                tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-            case .friends:
-                guard let friends = models as? [UserGroupCellModel] else {
-                    printError(in: #function, error: "Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
-                    return
-                }
-                
-                self.friends = friends
-                tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
-            default:
-                printError(in: #function, error: "Incorrect data format.")
-                return
-            }
         }
     }
     
-    func update(models: [SectionID : Any]) {
-        
-        for (sectionId, models) in models.enumerated() {
-            let section = Section(rawValue: sectionId)
-            
+    func insert(models: [Sections]) {
+        for section in models {
             switch section {
             case .events:
-                guard let events = models.value as? [GroupsInvitationCellModel] else {
-                    print("Error in class: UserGroupsViewModel af function: \(#function). Cant setup viewModel with [GroupsInvitationCellModel], because of incorrect type.")
-                    return
-                }
-                
-                self.events = events
-                
-                let insertions = Array(0 ..< events.count)
-                let indexPaths = insertions.map { IndexPath(row: $0, section: 0) }
-                
-                tableView.reloadRows(at: indexPaths, with: .automatic)
-                
+                sections[0] = section
             case .friends:
-                guard let friends = models.value as? [UserGroupCellModel] else {
-                    printError(in: #function, error: "Cant setup viewModel with [UserGroupCellModel], because of incorrect type.")
-                    return
-                }
-                
-                self.friends = friends
-                
-                let insertions = Array(0 ..< friends.count)
-                let indexPaths = insertions.map { IndexPath(row: $0, section: 1) }
-                tableView.reloadRows(at: indexPaths, with: .automatic)
-                
-            default:
-                printError(in: #function, error: "Incorrect data format.")
-                return
+                sections[1] = section
             }
         }
         
+        tableView.reloadData()
     }
     
+    func update(with models: [Sections], at indexPath: [IndexPath]) {
+        
+    }
+
     func delete(models at: [IndexPath]) {
         
     }

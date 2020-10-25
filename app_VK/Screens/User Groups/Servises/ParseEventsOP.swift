@@ -28,11 +28,11 @@ class ParseEventsOP: Operation {
             return
         }
     
-        #if DEBUG
-         print("Groups from GetEventsOP: ", groups)
-         print("Events from GetEventsOP: ", events)
-         print("Profiles from GetEventsOP: ", profiles)
-        #endif
+//        #if DEBUG
+//         print("Groups from GetEventsOP: ", groups)
+//         print("Events from GetEventsOP: ", events)
+//         print("Profiles from GetEventsOP: ", profiles)
+//        #endif
         
         do {
             try parseGroups(json: groups)

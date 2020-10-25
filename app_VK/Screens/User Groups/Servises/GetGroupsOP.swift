@@ -15,9 +15,9 @@ class GetGroupsOP: AsyncOperation {
     var groups = [JSON]()
     
     init(param: VKRequestParametrs) {
-        request = GetGroupsOP.session.request(param.getBaseUrl() + param.getPath(),
+        request = GetGroupsOP.session.request(param.url,
                                   method: .get,
-                                  parameters: param.getParams()
+                                  parameters: param.params
         )
     }
     
