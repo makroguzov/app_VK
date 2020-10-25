@@ -19,13 +19,13 @@ class UserNewsDataLoader {
         self.viewModel = viewModel
     }
     
-    func loadData(complition: (() -> Void)? = nil) {
+    func loadData(nextFrom: String? = nil, complition: (() -> Void)? = nil) {
         hud.show(in: viewModel.controller.view)
         
         
         let queue = OperationQueue()
         
-        let getNewsOP = GetNewsOP(startFrom: nextFrom)
+        let getNewsOP = GetNewsOP(startFrom: nextFrom ?? self.nextFrom)
         getNewsOP.completionBlock = { [weak self] in
             guard let self = self else {
                 return
@@ -54,6 +54,10 @@ class UserNewsDataLoader {
             }
         }
         queue.addOperation(parseNewsOP)
+    }
+    
+    func loadDataFromStart(complition: (() -> Void)? = nil) {
+        loadData(nextFrom: "", complition: complition)
     }
     
     private func printError(at function: String, error: String) {

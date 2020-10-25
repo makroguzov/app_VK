@@ -63,43 +63,61 @@ struct Post: Codable {
         }
         
         
-        postId = try container.decode(Int.self, forKey: .postId)
-        sourceId = try container.decode(Int.self, forKey: .sourceId)
-        
-        
-        let time = try container.decode(Double.self, forKey: .date)
-        date = Date(timeIntervalSince1970: time).timeAgo(numericDates: false)
-        
-        
-        type = try PostType(rawValue: container.decode(String.self, forKey: .type)) ?? .none
-        
-        switch type {
-        case .photo:
-            photos = try container.decode([Photo].self, forKey: .photos)
-        case .post:
-            text = try container.decode(String.self, forKey: .text)
+        do {
+            postId = try container.decode(Int.self, forKey: .postId)
+            sourceId = try container.decode(Int.self, forKey: .sourceId)
             
-            comments = try container.decode(Comment.self, forKey: .comments)
-            likes = try container.decode(Like.self, forKey: .likes)
-            reposts = try container.decode(Repost.self, forKey: .reposts)
+            let time = try container.decode(Double.self, forKey: .date)
+            date = Date(timeIntervalSince1970: time).timeAgo(numericDates: false)
             
-            if let attachments = try? container.decode([Attachment].self, forKey: .attachments) {
-                self.attachments = attachments
+            type = try PostType(rawValue: container.decode(String.self, forKey: .type)) ?? .none
+            
+            switch type {
+            case .photo:
+                if let photos = try? container.decode([Photo].self, forKey: .photos) {
+                    self.photos = photos
+                }
+            case .post:
+                text = try container.decode(String.self, forKey: .text)
+                
+                comments = try container.decode(Comment.self, forKey: .comments)
+                likes = try container.decode(Like.self, forKey: .likes)
+                reposts = try container.decode(Repost.self, forKey: .reposts)
+                
+                if let attachments = try? container.decode([Attachment].self, forKey: .attachments) {
+                    self.attachments = attachments
+                }
+            case .friend:
+                return
+            case .note:
+                return
+            case .audio:
+                return
+            case .video:
+                return
+            case .photoTag:
+                return
+            case .wallPhoto:
+                return
+            case .none:
+                print("Error in class: Post at function:\(#function). Undefind Post type.")
             }
-        case .friend:
-            return
-        case .note:
-            return
-        case .audio:
-            return
-        case .video:
-            return
-        case .photoTag:
-            return
-        case .wallPhoto:
-            return
-        case .none:
-            print("Error in class: Post at function:\(#function). Undefind Post type.")
+        } catch DecodingError.dataCorrupted(let context) {
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: context.codingPath,
+                                  debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.keyNotFound(keys, context) {
+            throw DecodingError.keyNotFound(keys, DecodingError.Context(codingPath: context.codingPath,
+                                                                        debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.typeMismatch(type, context) {
+            throw DecodingError.typeMismatch(type, .init(codingPath: context.codingPath,
+                                                         debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
+        } catch let DecodingError.valueNotFound(type, context) {
+            throw DecodingError.valueNotFound(type, .init(codingPath: context.codingPath,
+                                                          debugDescription: "\(context.debugDescription) in file \(#file)")
+            )
         }
     }
 }

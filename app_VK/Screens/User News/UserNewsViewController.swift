@@ -45,7 +45,7 @@ class UserNewsViewController: UITableViewController {
     }
     
     @objc private func refresh(_ sender: Any) {
-        viewModel.dataLoader.loadData { [weak self] in
+        viewModel.dataLoader.loadDataFromStart { [weak self] in
             self?.refreshControl?.endRefreshing()
         }
     }
@@ -113,9 +113,6 @@ extension UserNewsViewController {
 extension UserNewsViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        
-        print("perfetch rows at: \(indexPaths)")
-        
         if indexPaths.contains(where: isLoadingCell(for:)) {
             loadData()
         }
